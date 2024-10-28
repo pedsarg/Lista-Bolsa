@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="src/frontend/styles.css">
+    <script src="src/frontend/script.js"></script>
+    <title>Valores de Ações</title>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="content">
+            <h1>Informações da Bolsa de Valores</h1>
+            <nav>
+                <a href="#home" style="color: white; margin-right: 15px;">Início</a>
+                <a href="#sobre" style="color: white; margin-right: 15px;">Sobre</a>
+                <a href="#contato" style="color: white;">Contato</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Corpo Principal -->
+    <main>
+        <div class="content">
+            <h2>Dados de Ações</h2>
+            <input type="text" id="symbol" placeholder="Digite o símbolo da ação">
+            <button onclick="getStockData()">Buscar</button>
+
+            <p id="error-message" style="color: red; display: none;"></p>
+
+            <p id="loading">Carregando...</p>
+
+            <div id="stock-info" style="display: none;">
+                <h2 id="stock-name"></h2>
+                <div><strong>Preço:</strong> R$ <span id="stock-price"></span></div>
+                <div><strong>Variação:</strong> <span id="stock-change"></span> %</div>
+                <div><strong>Máximo do dia:</strong> R$ <span id="stock-dayHigh"></span></div>
+                <div><strong>Mínimo do dia:</strong> R$ <span id="stock-dayLow"></span></div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="content">
+            <p>&copy; 2024 Todos os direitos reservados - Informações da Bolsa de Valores</p>
+        </div>
+    </footer>
+</body>
+
+</html>
