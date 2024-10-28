@@ -1,0 +1,53 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header, footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+}
+
+header {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1;
+}
+
+footer {
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+main {
+    padding: 60px 20px; /* Para evitar sobreposição com o header */
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#loading {
+    display: none;
+}
+
+/* Estilos adicionais para formulário */
+input, button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#stock-info {
+    margin-top: 20px;
+    border: 1px solid #ddd;
+    padding: 15px;
+    border-radius: 5px;
+    background-color: #f9f9f9;
+}
