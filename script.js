@@ -24,10 +24,19 @@ const calcGanhos = () => {
         
         const porcentagemValue = (result / totalEntrada) * 100; // Calculating percentage
 
+        const valorPorcentagem = Number(porcentagemValue);
+
         ganhosPerdas.innerHTML = `R$ ${result}`; // Using backticks
         valorEntrada.innerHTML = `R$ ${totalEntrada}`; // Correct ID used
         valorSaida.innerHTML = `R$ ${valorSaidaValue}`; // Using backticks
-        porcentagem.innerHTML = `${porcentagemValue.toFixed(2)}%`; // Using backticks
+        porcentagem.innerHTML = `${valorPorcentagem.toFixed(2)}%`; // Using backticks
+        
+
+        if(valorPorcentagem < 0){
+            porcentagem.style.color = "red";
+        }else{
+            porcentagem.style.color = "green";
+        }
     } else {
         aviso.innerHTML = 'Preencha todos os campos';
     }
