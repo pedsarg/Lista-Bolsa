@@ -12,8 +12,6 @@ main{
 }
 
 .info01{
-    margin-left: 19vw;
-    margin-right: 15vw;
     justify-content: center;
     align-items: center;
     display: grid;
@@ -22,6 +20,22 @@ main{
     grid-gap: 0vw;
 }
 
+#qtdAcoes,#valorCompra,#valorVenda,#taxas{
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 10vh;
+}
+
+.qtdAcoes,.valorVenda{
+    margin-left: 25vw;
+    padding-right: 5vw;
+    
+}
+
+.qtdCompra,.taxas{
+    margin-right: 25vw;
+    padding-left: 3vw;
+}
 
 h2 {
     margin-top: 15vh;
@@ -59,13 +73,12 @@ button{
     margin-bottom: 3vh;
 }
 
-
 .results{
     margin-top: 10vh;
 }
 
 .resultado{
-padding: 3vh;
+    padding: 3vh;
     font-size: 25px;
 }
 
@@ -75,25 +88,17 @@ padding: 3vh;
     text-align: center;
     color: rgb(255, 0, 0);
 }
+
 .info02{
-    margin-left: 15vw;
-    margin-right: 15vw;
     justify-content: space-around;
     align-items: center;
     display: grid;
     grid-template-columns: 2fr 2fr;
     grid-template-rows: 15vh;
-    grid-gap: 0vw;
-    padding-inline: 10px;
-    margin-bottom: 10px;
+    grid-gap: 0.5vw;
+    padding-bottom: 10vh;
+
 }
-
-
-#textoEntrada{
-    justify-content: center;
-    text-align: center;
-}
-
 
 .valorEntrada, .porcentagem{
     margin-right: 15vw;
@@ -105,22 +110,39 @@ padding: 3vh;
     border-radius: 25px;
 }
 
-
 .perdasGanhos, .valorSaida{
-
+    justify-content: center;
     text-align: center;    
     margin-left: 15vw;
     margin-right: 3vw;
     margin-top: 10px;
     background-color: #030028;
-    padding: 2vw;
+    padding: 2vh;
     padding-inline:2vw;
     border-radius: 25px;
 
 }
 
-#gpLabel{
-    
+.valorEntrada, .porcentagem{
+    justify-content: center;
+    text-align: center;    
+    margin-right: 15vw;
+    margin-left: 3vw;;
+    background-color: #030028;
+    padding: 2vh;
+    padding-inline:2vw;
+    border-radius: 25px;
+}
+
+
+#perdasGanhos,#valorEntrada,#valorSaida,#porcentagem{
+    display: flex;
+    margin-top: 3vh;
+    justify-content: center;
+    font-size: 20px;
+}
+.results{
+    height: 45vh;
 }
 
 h2,main,.results{

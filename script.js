@@ -24,7 +24,7 @@ const calcGanhos = () => {
         
         const porcentagemValue = (result / totalEntrada) * 100; // Calculating percentage
 
-        ganhosPerdas.innerHTML = `R$${result}`; // Using backticks
+        ganhosPerdas.innerHTML = `R$ ${result}`; // Using backticks
         valorEntrada.innerHTML = `R$ ${totalEntrada}`; // Correct ID used
         valorSaida.innerHTML = `R$ ${valorSaidaValue}`; // Using backticks
         porcentagem.innerHTML = `${porcentagemValue.toFixed(2)}%`; // Using backticks
