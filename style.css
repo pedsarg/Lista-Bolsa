@@ -1,0 +1,138 @@
+* {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body{
+    background-color: #030028;
+}
+
+main{
+    margin-top: 10vh;
+
+}
+
+.info01{
+    margin-left: 19vw;
+    margin-right: 15vw;
+    justify-content: center;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 20vh;
+    grid-gap: 0vw;
+}
+
+
+h2 {
+    margin-top: 15vh;
+    margin-bottom: 15vh;
+    font-size: 30px;
+    padding: 3vh;
+
+}
+
+input{
+    border-radius:25px;
+    margin-top: 50p;
+
+}
+
+input, button{
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: rgb(172, 172, 172);
+    font-size: 20px;
+    outline: none;
+    
+}
+
+.divCalc{
+    margin-top: 4vh;
+    text-align: center;
+}
+
+button{
+    cursor: pointer;
+    background-color: #f52000;
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+}
+
+
+.results{
+    margin-top: 10vh;
+}
+
+.resultado{
+padding: 3vh;
+    font-size: 25px;
+}
+
+.aviso{
+    font-size: 20px;
+    justify-content: center;
+    text-align: center;
+    color: rgb(255, 0, 0);
+}
+.info02{
+    margin-left: 15vw;
+    margin-right: 15vw;
+    justify-content: space-around;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    grid-template-rows: 15vh;
+    grid-gap: 0vw;
+    padding-inline: 10px;
+    margin-bottom: 10px;
+}
+
+
+#textoEntrada{
+    justify-content: center;
+    text-align: center;
+}
+
+
+.valorEntrada, .porcentagem{
+    margin-right: 15vw;
+    margin-left: 3vw;
+    margin-top: 10px;
+    background-color: #030028;
+    padding: 2vw;
+    padding-inline:2vw;
+    border-radius: 25px;
+}
+
+
+.perdasGanhos, .valorSaida{
+
+    text-align: center;    
+    margin-left: 15vw;
+    margin-right: 3vw;
+    margin-top: 10px;
+    background-color: #030028;
+    padding: 2vw;
+    padding-inline:2vw;
+    border-radius: 25px;
+
+}
+
+#gpLabel{
+    
+}
+
+h2,main,.results{
+    margin-left: 7vw;
+    margin-right: 7vw;
+    border-radius: 25px;
+    color:white;
+    outline: 2px solid #f52000;
+    outline-offset: 15px;
+    background-color: #190564;
+}
+
+
+
+
