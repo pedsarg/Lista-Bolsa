@@ -1,0 +1,69 @@
+body{
+    color: white;
+    display:flex;
+    margin: 0;
+    height: 100vh;
+}
+
+.ladoTexto{
+    width: 35%;
+    height:100%;
+    background-color: #030028;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.ladoLogin{
+    width: 65%;
+    height:100%;
+    background-color: #190564;
+    display: grid;
+    grid-template-rows: 1vh;
+    grid-template-columns: 1fr;
+    place-items: center;
+    justify-content: center;
+    align-items: center;
+}
+
+#textoLogin{
+    font-size: 35px;
+    color: white;
+}
+.inserirDados{
+    background-image: linear-gradient(45deg,#030028, #140352);
+    border-radius: 25px;
+    position: absolute;
+    top: 50%;
+    left: 69%;
+    transform: translate(-50%, -50%);
+    padding: 80px;
+    outline: 2px solid #FF5200;
+
+}
+
+input{
+    border-radius: 25px;
+    font-size: 17px;
+    padding: 15px;
+    width: 20vw;
+    height: 5vh;
+    margin-top: 3vh;
+    margin-right: 2px;
+}
+button{
+    background-color: #FF5200;
+
+    border-radius: 25px;
+    width: 100%;
+    font-size: 17px;
+    height: 10vh;
+    padding: 15px;
+    margin-top:3vh;
+}
+button:hover{
+    background-color: #FF7F00;
+    cursor: pointer;
+}
