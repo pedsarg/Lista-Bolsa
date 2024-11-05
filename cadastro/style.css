@@ -1,0 +1,130 @@
+body{
+    background-color: #030028;
+    color: white;
+}
+
+.cadastro{
+    background-color: #190564;
+    margin-top:15vh;
+    margin-left: 12vw;
+    margin-right: 12vw;
+    padding: 0.2vh;
+    border-radius: 25px;
+    outline: 2px solid #FF5200;
+    font-size:20px;
+}
+
+h1{
+    margin-left: 2vw;
+}
+
+.inserirDados{
+    background-color: #190564;
+    margin-top: 5vh;
+    padding: 5vh;
+    border-top: 2px solid #FF5200;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.formulario{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 2vh;
+    
+}
+
+.input-box input{
+    margin: 1vw;
+    margin-bottom: 2.5vw;
+    display: flex;
+    border-radius:25px;
+    padding: 1vw;
+    width: 20vw;
+    align-items: left;
+    justify-content: left;
+    font-size: 1.1vw;
+}
+
+.input-box label{
+    font-size:20px
+}
+
+
+
+#username{
+    margin-right: 0.8vw;
+}
+
+
+.inserirDados button{
+    background-color: #FF5200;
+    border-radius: 25px;
+    width: 100%;
+    font-size: 25px;
+    height: 10vh;
+    padding: 15px;
+    margin-top: 2vh;
+    margin-bottom: 5vh;
+}
+
+
+button:hover{
+    background-color: #FF7F00;
+    cursor: pointer;
+}
+
+
+
+
+#tituloAcoes{
+    font-size: 25px;
+    margin-left: 2vw;
+    margin-bottom: 8vh;
+}
+
+#novaAcaoFav{
+    border-radius: 25px;
+    padding: 2vh;
+    width: 20vw;
+    margin-left: 10vw;
+    margin-bottom: 5vh;
+
+}
+
+
+.acoes{
+    background-color: #190564;
+    border-top: 2px solid #FF5200;
+}
+
+#addAcao, .removerAcao{
+    padding: 12px;
+    padding-inline: 15px;
+    margin-left: 5px;
+    border-radius: 25px;
+    background-color: #FF5200;
+
+}
+
+#listaAcoes{
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+#listaAcoes li{
+    padding: 20px;
+    background-color: #030028;
+    border-radius: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-left: 12vw;
+    margin-right: 25vw;
+    margin-bottom: 5vh;
+}
+
+
