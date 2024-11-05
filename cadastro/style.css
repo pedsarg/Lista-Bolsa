@@ -60,30 +60,45 @@ h1{
 }
 
 
-.inserirDados button{
+#botaoCadastrar{
     background-color: #FF5200;
     border-radius: 25px;
-    width: 100%;
+    width: 15vw;
     font-size: 25px;
     height: 10vh;
     padding: 15px;
     margin-top: 2vh;
     margin-bottom: 5vh;
+
 }
 
+.botaoCadastro{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+}
+
+#avisoAcao{
+    font-size: 20px;
+    margin-left: 12vw;
+}
 
 button:hover{
     background-color: #FF7F00;
     cursor: pointer;
 }
 
-
+.acoesFavoritas{
+    margin-top: 2vh;
+}
 
 
 #tituloAcoes{
     font-size: 25px;
     margin-left: 2vw;
-    margin-bottom: 8vh;
+    margin-bottom: 5vh;
 }
 
 #novaAcaoFav{
@@ -115,8 +130,9 @@ button:hover{
     padding: 0;
     margin: 0;
 }
+
 #listaAcoes li{
-    padding: 20px;
+    padding: 14px;
     background-color: #030028;
     border-radius: 12px;
     display: flex;

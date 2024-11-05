@@ -36,34 +36,38 @@
                             <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
                         </div>
                     </div>
-                        
-                    <div class="batao">            
-                        <button onclick="validarCadastro()">Cadastrar</button>
-                            
-                        <span id="loading"></span>
-                        <span id="aviso"></span>
-            
-                    </div>
+                    
                 </form>
             </div>
 
 
             <div class="acoes">
                 
-                <h2 id="tituloAcoes">Favorite ações(opcional)</h2>
+                <h2 id="tituloAcoes">Favorite ações (opcional)</h2>
+                <span id="avisoAcao"></span>
                 
                 <div class="acoesFavoritas">
                     <input type="text" id="novaAcaoFav" placeholder="Adicione uma Ação Favorita">
                     <button id="addAcao">
                         <i class="fa fa-plus"></i>
                     </button>
+                    
                 </div>
-
                 <ul id="listaAcoes">
                     
                 </ul>
 
             </div>
+
+   
+            <div class="botaoCadastro">            
+                <button id="botaoCadastrar" onclick="validarCadastro()">Cadastrar</button>
+                    
+                <span id="loading"></span>
+                <span id="aviso"></span>
+    
+            </div>
+
         </div>
         <script src="script.js"></script>
     </body>
