@@ -38,6 +38,45 @@ app.get('/api/login', async (req, res) => {
     }
 });
 
+app.get('/api/cadastro', async (req, res) => {
+    const usernameInput = req.query.username;
+    const passwordInput = req.query.password;
+    const emailInput = req.query.email;
+
+    if (!usernameInput || !passwordInput || !emailInput) {
+        return res.status(400).json({ error: "Preencha todos os campos Aqui!"});
+    }
+
+    try {
+        const verificadoUsernameEmail = await verificarUsernameEmail(usernameInput, emailInput);
+
+        if (verificadoUsernameEmail) {
+            return res.status(400).json({ error: "Email ou username já existe!" });
+        } else {
+            const senhaHash = await bcrypt.hash(passwordInput, 15);
+            const statusCadastro = await gravarCadastro(usernameInput, senhaHash, emailInput);
+
+            if (statusCadastro) {
+                res.json({ status: 'Cadastro realizado com sucesso!' });
+            } else {
+                return res.status(400).json({ error: 'Erro ao realizar cadastro!' });
+            }
+
+            // Defina ou atribua o valor para `acaoFav` antes de chamar `gravarAcoesFavoritas`
+            //const acaoFav = ...; // Atribua o valor necessário aqui
+            //const gravarAcoes = await gravarAcoesFavoritas(acaoFav, usernameInput);
+
+            //if (!gravarAcoes) {
+            //    return res.status(400).json({ error: "Erro ao gravar ações favoritas!" });
+            //}
+        }
+    } catch (error) {
+        console.error('Erro:', error.message);
+        res.status(500).json({ error: 'Erro interno do servidor' });
+    }
+});
+
+/*
 async function cadastro() {
     const usernameInput = "pedro03";
     const passwordInput = "1234";
@@ -67,6 +106,9 @@ async function cadastro() {
         console.error('Erro:', error.message);
     }
 }
+
+*/
+
 
 // Chame a função cadastro() se necessário
 // cadastro();
