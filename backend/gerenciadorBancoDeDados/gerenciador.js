@@ -70,26 +70,31 @@ function buscarID(username){
 
 async function gravarAcoesFavoritas(acaoFav, username) {
     try {
-        const idUsuario = await buscarID(username); 
-        const promises = acaoFav.map((codigoPapel) => {
-            return new Promise((res, rej) => {
-                con.query('INSERT INTO acoesFavoritas SET ?', { idUsuario, codigoPapel }, (err, rows) => {
-                    if (err) {
-                        return rej(err);
-                    } else {
-                        return res(true);
-                    }
-                });
-            });
+      const idUsuario = await buscarID(username);
+      const promises = acaoFav.map((codigoPapel) => {
+        return new Promise((res, rej) => {
+          con.query('INSERT INTO acoesFavoritas SET ?', { idUsuario, codigoPapel }, (err, rows) => {
+            if (err) {
+              return rej(err);
+            } else {
+              return res(true);
+            }
+          });
         });
-
-        await Promise.all(promises);
-        return true;
+      });
+  
+      await Promise.all(promises);
+  
+      // Check for any errors during individual inserts
+      if (promises.some((promise) => promise.catch)) {
+        throw new Error("Failed to insert some favorite actions.");
+      }
+  
+      return true;
     } catch (error) {
-        throw error; 
+      throw error;
     }
-}
-
+  }
 
 // Exportando a função
 export {dadosDoLogin, verificarUsernameEmail, gravarCadastro, gravarAcoesFavoritas};

@@ -3,7 +3,7 @@ let addAcao = document.querySelector('#addAcao');
 let listaAcoes = document.querySelector('#listaAcoes');
 let avisoAcao = document.querySelector('#avisoAcao');
 let aviso = document.querySelector('#aviso');
-
+let acoesFavoritas = [];
 
 avisoAcao.innerHTML = '';
 aviso.innerHTML = '';
@@ -16,6 +16,7 @@ novaAcao.addEventListener('keypress', (e) => {
             id: gerarId(),
         };
         if (analisarConteudo(acao)) {
+            acoesFavoritas.push(novaAcao.value);
             adicionarAcao(acao);
         }
     }
@@ -28,6 +29,7 @@ addAcao.addEventListener('click', (e) => {
         id: gerarId(),
     };
     if (analisarConteudo(acao)) {
+        acoesFavoritas.push(novaAcao.value);
         adicionarAcao(acao);
     }
 });
@@ -83,9 +85,14 @@ async function validarCadastro() {
     const password = document.getElementById('senha').value;
     const email = document.getElementById('email').value;
 
-    try {
-        const response = await fetch(`http://localhost:3010/api/cadastro?username=${username}&password=${senha}&email=${email}`);
+    for(let i =0; i<acoesFavoritas.length;i++){
+        console.log(`${acoesFavoritas[i]}`);
+    }
 
+    try {
+        
+        const acoesFavoritasJSON = JSON.stringify(acoesFavoritas);
+        const response = await fetch(`http://localhost:3010/api/cadastro?username=${username}&password=${senha}&email=${email}&acoesFavoritas=${acoesFavoritasJSON}`);
         const data = await response.json();
 
         if (data.error) {
