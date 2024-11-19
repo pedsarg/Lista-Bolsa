@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculadora da ganhos</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <header>
+        <div class="cabecalho">
+            <a href="../PaginaInicial/index.html"><img id="logo" src="../imagens/logo.png" alt="Logo do site"></a>
+            <nav class="abas">
+                <a href="../PaginaInicial/index.html">Pagina Inicial</a>
+                <a href="../ConsultarAcoes/index.html">Consultar Ações</a>
+                <a href="../Postagens/index.html">Fórum</a>
+                <a href="../Sobre/sobre.html">Sobre</a>
+                <a class="registrar" href="../loginCadastro/login/index.html">Login</a>
+                <a class="registrar" href="../loginCadastro/cadastro/index.html">Cadastro</a>
+            </nav>
+        </div>
+    </header>
+
+    <h2>Simule seus ganhos!</h2>
+
+    <main>
+        <div class="info01">
+            <div class="qtdAcoes">
+                <label for="qtdAcoes">Quantidade de ações: </label>
+                <input type="number" id="qtdAcoes"/>
+            </div>
+
+            <div class="qtdCompra">
+                <label for="valorCompra">Valor de compra: </label>
+                <input type="number" id="valorCompra"/>
+            </div>
+        
+            <div class="valorVenda">
+                <label for="valorVenda">Valor de venda: </label>
+                <input type="number" id="valorVenda"/>
+            </div>
+
+            <div class="taxas">
+                <label for="taxa">Taxa de entrada e saida: </label>
+                <input type="number" id="taxas"/>
+            </div>
+        
+        </div>
+        <div class="divCalc">
+            <button onclick="calcGanhos()">Calcular</button>
+        </div>
+        
+    </main>
+
+    <div class="results">
+        <div class="resultado">
+            <label>Resultado:</label>
+            <div class="aviso">
+                <span id="aviso"></span>
+            </div>
+        </div>
+
+
+        <div class="info02">
+
+            <div class="perdasGanhos">
+                <label id="gpLabel">Ganhos/Perdas: </label>
+                <span id="perdasGanhos"></span>
+            </div>
+
+            <div class="valorEntrada">
+                <label id="textoEntrada">Valor de entrada: </label>
+                <span id="valorEntrada"></span>
+            </div>
+            
+            <div class="valorSaida">
+                <label id="textoSaida">Valor de saida: </label>
+                <span id="valorSaida"></span>
+            </div>
+            
+            <div class="porcentagem">
+                <label id="textoporcentagem">Porcentagem de ganhos: </label>    
+                <span id="porcentagem"></span>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+    
+</body>
+</html>
