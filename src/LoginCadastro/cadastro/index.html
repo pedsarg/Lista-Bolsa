@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Cadastro</title>
+
+        <!-- Este link possui os estilos dos botões(de adicionar e o ícone de lixeira) -->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        
+        <link rel="stylesheet" href="style.css">
+    </head>
+
+    <body>
+        <div class="cadastro">
+                <h1>Cadastre-se</h1>
+            
+
+        
+            <div class="inserirDados">
+                <form action="#">
+                    <div class="formulario">
+                            
+                        <div class="input-box">
+                            <label for="email">Email</label>
+                            <input type="email" id="email" name="email" placeholder="Digite seu Email" required>                      
+                        </div>
+                            
+                        <div class="input-box">
+                            <label for="username" id="usernameTexto">Username</label>
+                            <input type="text" id="username" name="username" placeholder="Digite seu Username" required>
+                        </div>
+
+                        <div class="input-box">
+                            <label for="senha">Senha</label>
+                            <input type="password" id="senha" name="senha" placeholder="Digite sua senha" required>
+                        </div>
+                    </div>
+                    
+                </form>
+            </div>
+
+
+            <div class="acoes">
+                
+                <h2 id="tituloAcoes">Favorite ações (opcional)</h2>
+                <span id="avisoAcao"></span>
+                
+                <div class="acoesFavoritas">
+                    <input type="text" id="novaAcaoFav" placeholder="Adicione uma Ação Favorita">
+                    <button id="addAcao">
+                        <i class="fa fa-plus"></i>
+                    </button>
+                    
+                </div>
+                <ul id="listaAcoes">
+                    
+                </ul>
+
+            </div>
+
+   
+            <div class="botaoCadastro">            
+                <button id="botaoCadastrar" onclick="validarCadastro()">Cadastrar</button>
+                    
+                <span id="loading"></span>
+                <span id="aviso"></span>
+    
+            </div>
+
+        </div>
+        <script src="script.js"></script>
+    </body>
+
+
+</html>
