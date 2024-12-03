@@ -2,10 +2,11 @@ const ganhosPerdas = document.querySelector('#perdasGanhos');
 const valorCompra = document.querySelector('#valorCompra');
 const valorVenda = document.querySelector('#valorVenda');
 const taxas = document.querySelector('#taxas');
-const valorEntrada = document.querySelector('#valorEntrada'); // Ensure this matches your HTML
-const valorSaida = document.querySelector('#valorSaida'); // Ensure this matches your HTML
-const porcentagem = document.querySelector('#porcentagem'); // Ensure this matches your HTML
+const valorEntrada = document.querySelector('#valorEntrada'); 
+const valorSaida = document.querySelector('#valorSaida'); 
+const porcentagem = document.querySelector('#porcentagem'); 
 const aviso = document.querySelector('#aviso');
+
 const calcGanhos = () => {
     if (qtdAcoes.value !== '' && valorCompra.value !== '' && valorVenda.value !== '') {
         if (taxas.value === '') {
@@ -19,20 +20,20 @@ const calcGanhos = () => {
             Number(taxas.value)
         );
 
-        const valorSaidaValue = (Number(qtdAcoes.value) * Number(valorVenda.value)); // Total revenue from selling
+        const valorSaidaValue = (Number(qtdAcoes.value) * Number(valorVenda.value)); 
         console.log(result);
         
-        const porcentagemValue = (result / totalEntrada) * 100; // Calculating percentage
+        const porcentagemString = (result / totalEntrada) * 100; 
 
-        const valorPorcentagem = Number(porcentagemValue);
+        const porcentagemDeGanhos = Number(porcentagemString);
 
         ganhosPerdas.innerHTML = `R$ ${result}`; // Using backticks
         valorEntrada.innerHTML = `R$ ${totalEntrada}`; // Correct ID used
         valorSaida.innerHTML = `R$ ${valorSaidaValue}`; // Using backticks
-        porcentagem.innerHTML = `${valorPorcentagem.toFixed(2)}%`; // Using backticks
+        porcentagem.innerHTML = `${porcentagemDeGanhos.toFixed(2)}%`; // Using backticks
         
 
-        if(valorPorcentagem < 0){
+        if(porcentagemDeGanhos < 0){
             porcentagem.style.color = "red";
         }else{
             porcentagem.style.color = "green";

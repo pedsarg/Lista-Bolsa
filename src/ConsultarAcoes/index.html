@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
     <title>Consultar Ações</title>
 </head>
@@ -30,14 +30,13 @@
     <main>
         <div class="content">
             <h2>Dados de Ações</h2>
-            <input type="text" id="symbol" placeholder="Digite o símbolo da ação">
+            <input type="text" id="codigoAcao" placeholder="Digite o símbolo da ação">
             <button onclick="getStockData()">Buscar</button>
 
             <p id="error-message" style="color: red; display: none;"></p>
 
-            <p id="loading">Carregando...</p>
+            <p id="carregando">Carregando...</p>
 
-            
             <div id="stock-info" style="display: none;">
                 <h2 id="stock-name"></h2>
                 

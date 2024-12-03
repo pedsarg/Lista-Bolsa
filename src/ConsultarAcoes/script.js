@@ -1,13 +1,12 @@
 async function getStockData() {
-    const symbol = document.getElementById('symbol').value;
+    const symbol = document.getElementById('codigoAcao').value;
     const errorMessage = document.getElementById('error-message');
     const stockInfo = document.getElementById('stock-info');
-    const loading = document.getElementById('loading');
+    const carregando = document.getElementById('carregando');
 
-    errorMessage.style.display = 'none';  // Esconder o erro no início
-    stockInfo.style.display = 'none';     // Esconder as informações no início
-    loading.style.display = 'block';      // Mostrar o "Carregando"
-
+    errorMessage.style.display = 'none';
+    stockInfo.style.display = 'none';  
+    carregando.style.display = 'block';
     try {
         const response = await fetch(`http://localhost:3000/api/stock?symbol=${symbol}`);
         const data = await response.json();
@@ -35,12 +34,12 @@ async function getStockData() {
 
         // Exibir os dados e esconder o "Carregando"
         stockInfo.style.display = 'block';
-        loading.style.display = 'none';
+        carregando.style.display = 'none';
 
     } catch (error) {
         // Exibir a mensagem de erro abaixo da caixa de pesquisa
         errorMessage.textContent = error.message;
         errorMessage.style.display = 'block';
-        loading.style.display = 'none';
+        carregando.style.display = 'none';
     }
 }
