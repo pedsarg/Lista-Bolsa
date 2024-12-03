@@ -45,7 +45,7 @@ app.get('/api/cadastro', async (req, res) => {
     const acoesFavoritasInput = JSON.parse(req.query.acoesFavoritas);
 
     if (!usernameInput || !passwordInput || !emailInput) {
-        return res.status(400).json({ error: "Preencha todos os campos Aqui!"});
+        return res.status(400).json({ error: "Preencha todos os campos!"});
     }
 
     try {
@@ -55,27 +55,48 @@ app.get('/api/cadastro', async (req, res) => {
             return res.status(400).json({ error: "Email ou username já existe!" });
         } else {
             const senhaHash = await bcrypt.hash(passwordInput, 15);
-            const statusCadastro = await gravarCadastro(usernameInput, senhaHash, emailInput);
 
+            // Verificar ação antes de gravar no banco
+            for (const acao of acoesFavoritasInput) {
+                const url = `https://financialmodelingprep.com/api/v3/quote/${acao}.SA?apikey=eL0e2agL7ulQFbpiHLKxK2dtAtNuH7V8`;
+
+                try {
+                    const response = await axios.get(url);
+                    const data = response.data;
+
+                    // Verificando se a API retornou erro
+                    if (!data || data.length === 0) {
+                        return res.status(400).json({ error: `Símbolo inválido ou erro na API para a ação: ${acao}` });
+                    }
+
+                    const symbol = data[0]?.symbol;
+
+                    // Gravar ação no banco
+                    const gravarAcoes = await gravarAcoesFavoritas(acao, usernameInput);
+                    if (!gravarAcoes) {
+                        return res.status(400).json({ error: `Erro ao gravar ação favorita: ${acao}` });
+                    }
+                } catch (error) {
+                    //AQUI
+                    console.error(`Erro ao processar ação ${acao}:`, error.message);
+                    return res.status(400).json({ error: `Erro ao buscar dados da API para a ação: ${acao}` });
+                }
+
+            }
+
+            const statusCadastro = await gravarCadastro(usernameInput, senhaHash, emailInput);
             if (statusCadastro) {
                 res.json({ status: 'Cadastro realizado com sucesso!' });
             } else {
                 return res.status(400).json({ error: 'Erro ao realizar cadastro!' });
             }
-
-            const gravarAcoes = await gravarAcoesFavoritas(acoesFavoritasInput, usernameInput);
-
-            if (!gravarAcoes) {
-                return res.status(400).json({ error: "Erro ao gravar ações favoritas!" });
-            }
         }
 
     } catch (error) {
         console.error('Erro:', error.message);
-        res.status(500).json({ error: 'Erro interno do servidor' });
+        res.status(500).json({ error: 'Banco de dados indisponível' });
     }
 });
-
 
 app.listen(port, () => {
     console.log("Servidor iniciado na porta 3010!");

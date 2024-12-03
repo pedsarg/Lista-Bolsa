@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js"></script>
+    <title>Consultar Ações</title>
+</head>
+
+<body>
+
+    <!-- Cabeçalho -->
+    <header>
+        <div class="cabecalho">
+            <a href="../PaginaInicial/index.html"><img id="logo" src="../Imagens/logo.png" alt="Logo do site"></a>
+            <nav class="abas">
+                <a href="../PaginaInicial/index.html">Pagina Inicial</a>
+                <a href="../Calculadora/index.html">Calculadora de Ganhos</a>
+                <a href="../Postagens/index.html">Fórum</a>
+                <a href="../Sobre/sobre.html">Sobre</a>
+                <a class="registrar" href="../LoginCadastro/login/index.html">Login</a>
+                <a class="registrar" href="../LoginCadastro/cadastro/index.html">Cadastro</a>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Corpo Principal -->
+    <main>
+        <div class="content">
+            <h2>Dados de Ações</h2>
+            <input type="text" id="symbol" placeholder="Digite o símbolo da ação">
+            <button onclick="getStockData()">Buscar</button>
+
+            <p id="error-message" style="color: red; display: none;"></p>
+
+            <p id="loading">Carregando...</p>
+
+            
+            <div id="stock-info" style="display: none;">
+                <h2 id="stock-name"></h2>
+                
+                <div id="cabecalhoDaAcao">
+                    <h3 id="stock-symbol"></h3>
+                    <div><strong>Variação:</strong> <span id="stock-change"></span> %</div>
+                    <div><strong>Preço:</strong> R$ <span id="stock-price"></span></div>
+                </div>
+
+                    <div>GRAFICO</div>
+
+                <div><strong>Lucro por Ação:</strong> R$ <span id="stock-eps"></span></div>
+                <div><strong>Índice preço/lucro:</strong> <span id="stock-pe"></span>
+                <div><strong>Volume:</strong> <span id="stock-volume"></span></div>
+
+                <div><strong>Abertura:</strong> R$ <span id="stock-open"></span></div>
+                <div><strong>Previsao de Fechamento:</strong> R$ <span id="stock-previousClose"></span></div>
+                <div><strong>Variação do dia:</strong> R$ <span id="stock-changesPercentage"></span></div>
+                
+                <div><strong>Máximo do dia:</strong> R$ <span id="stock-dayHigh"></span></div>
+                <div><strong>Mínimo do dia:</strong> R$ <span id="stock-dayLow"></span></div>
+               <div><strong>Média em 50 dias:</strong> R$ <span id="stock-priceAvg50"></span></div>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Rodapé -->
+    <footer>
+        <div class="content">
+            <p>&copy; 2024 Todos os direitos reservados - Informações da Bolsa de Valores</p>
+        </div>
+    </footer>
+</body>
+
+</html>

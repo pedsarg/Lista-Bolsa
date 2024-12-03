@@ -4,6 +4,7 @@ let listaAcoes = document.querySelector('#listaAcoes');
 let avisoAcao = document.querySelector('#avisoAcao');
 let aviso = document.querySelector('#aviso');
 let acoesFavoritas = [];
+let acoesComId = [];
 
 avisoAcao.innerHTML = '';
 aviso.innerHTML = '';
@@ -49,6 +50,8 @@ function gerarId() {
 function adicionarAcao(acao) {
     let li = criarTag(acao);
     listaAcoes.appendChild(li);
+    acoesComId.push(acao.id);
+    acoesComId.push(novaAcao.value);
     novaAcao.value = '';
 }
 
@@ -66,6 +69,7 @@ function criarTag(acao) {
     removerAcao.innerHTML = '<i class="fa fa-trash"></i>';
     removerAcao.setAttribute('onclick', `excluir(${acao.id})`);
 
+
     div.appendChild(removerAcao);
     li.appendChild(span);
     li.appendChild(div);
@@ -77,13 +81,23 @@ function excluir(idAcao) {
     if (li) {
         listaAcoes.removeChild(li);
     }
+
+    let posicao = acoesComId.findIndex(acao => acao.value === idAcao);
+    posicao++;
+    acoesFavoritas.splice(posicao, 1);
+
 }
 
-async function validarCadastro() {
-    console.log("inicio");
+async function validarCadastro() {   
     const username = document.getElementById('username').value;
     const password = document.getElementById('senha').value;
     const email = document.getElementById('email').value;
+
+    aviso.style.display = 'none';
+    loading.style.display = 'block';
+
+    // Limpa mensagens anteriores
+    aviso.textContent = '';
 
     for(let i =0; i<acoesFavoritas.length;i++){
         console.log(`${acoesFavoritas[i]}`);
@@ -99,16 +113,18 @@ async function validarCadastro() {
             aviso.textContent = data.error;
             aviso.style.color = 'red';
             aviso.style.display = 'block';
+            loading.style.display = 'none';
         }
 
         if (data.status) {
-            aviso.textContent = 'Cadastro realizado com sucesso';
-            aviso.style.color = 'green';
             aviso.style.display = 'block';
+            window.location.href = '../../PaginaInicial/index.html';
         }
 
     } catch (error) {
-        aviso.textContent = 'Nao é possivel 2realizar o cadastro!';
+        aviso.style.color = 'red';
+        aviso.textContent = 'O backend está indisponível!';
         aviso.style.display = 'block';
+        loading.style.display = 'none';
     }
 }

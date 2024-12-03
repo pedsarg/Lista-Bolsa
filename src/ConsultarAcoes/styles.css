@@ -1,0 +1,97 @@
+body{
+    background-color: #030028;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.cabecalho {
+    background-color: #190564;
+    color: white;
+    margin: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    justify-items: center;
+    align-items: center;
+    display: flex;
+}
+
+#logo{
+    margin-left: 10px;
+    height: 150px;
+    width: auto;
+}
+
+a{
+    text-decoration: none;
+    color: white;
+    margin-left: 15px;
+}
+
+.abas{
+    position: absolute;
+    right: 25px;
+}
+
+.registrar{
+    background-color: #FF5200;
+    border-radius: 10px;
+    padding: 8px;
+}
+
+
+footer {
+    background-color: #333;
+    color: #fff;
+    padding: 10px 0;
+    text-align: center;
+    position: fixed;
+    width: 100%;
+    bottom: 0;
+}
+
+main {
+    padding: 60px 20px; /* Para evitar sobreposição com o header */
+    color:white
+}
+
+.content {
+    margin: 0 auto;
+    max-width: 1200px;
+}
+
+#loading {
+    display: none;
+}
+
+/* Estilos adicionais para formulário */
+input, button {
+    margin: 10px;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#stock-name{
+    font-size: 24px;
+    border-radius: 25px;
+    outline: 2px solid #FF5200;
+    background-color: #190564;
+    color: white;
+    padding:20px
+}
+
+#cabecalhoDaAcao{
+    background-color: #190564;
+    font-size: 18px;
+    border-radius: 25px;
+    outline: 2px solid #FF5200;
+    color: white;
+    align-items: center;
+    display: grid;
+    grid-template-columns: 1fr 3fr;
+    grid-template-rows: 1vh;
+}
+

@@ -22,13 +22,12 @@ async function validarLogin() {
         }
 
         if(data.status){
-            aviso.innerHTML = 'Login realizado com sucesso!';
-            aviso.style.color = 'green';
             aviso.style.display = 'block';
+            window.location.href = '../../PaginaInicial/index.html';
         }
     } catch (error) {
         loading.style.display = 'none';
         aviso.innerHTML = 'Não foi possível realizar o login';
-        aviso.style.display = 'block'; // Para mostrar a mensagem de erro
+        aviso.style.display = 'block';
     }
 }

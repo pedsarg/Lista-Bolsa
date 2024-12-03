@@ -5,6 +5,7 @@
 body{
     background-color: #030028;
 }
+
 .cabecalho {
     background-color: #190564;
     color: white;
@@ -65,7 +66,6 @@ main{
 .qtdAcoes,.valorVenda{
     margin-left: 25vw;
     padding-right: 5vw;
-    
 }
 
 .qtdCompra,.taxas{
@@ -78,13 +78,11 @@ h2 {
     margin-bottom: 15vh;
     font-size: 30px;
     padding: 3vh;
-
 }
 
 input{
     border-radius:25px;
     margin-top: 50p;
-
 }
 
 input, button{
@@ -94,7 +92,6 @@ input, button{
     background-color: rgb(172, 172, 172);
     font-size: 20px;
     outline: none;
-    
 }
 
 .divCalc{
@@ -133,7 +130,6 @@ button{
     grid-template-rows: 15vh;
     grid-gap: 0.5vw;
     padding-bottom: 10vh;
-
 }
 
 .valorEntrada, .porcentagem{
@@ -156,7 +152,6 @@ button{
     padding: 2vh;
     padding-inline:2vw;
     border-radius: 25px;
-
 }
 
 .valorEntrada, .porcentagem{

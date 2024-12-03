@@ -68,10 +68,9 @@ function buscarID(username){
 }
 
 
-async function gravarAcoesFavoritas(acaoFav, username) {
+async function gravarAcoesFavoritas(codigoPapel, username) {
     try {
       const idUsuario = await buscarID(username);
-      const promises = acaoFav.map((codigoPapel) => {
         return new Promise((res, rej) => {
           con.query('INSERT INTO acoesFavoritas SET ?', { idUsuario, codigoPapel }, (err, rows) => {
             if (err) {
@@ -80,7 +79,6 @@ async function gravarAcoesFavoritas(acaoFav, username) {
               return res(true);
             }
           });
-        });
       });
   
       await Promise.all(promises);
