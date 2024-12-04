@@ -42,7 +42,6 @@ a{
     padding: 8px;
 }
 
-
 footer {
     background-color: #333;
     color: #fff;
@@ -67,31 +66,139 @@ main {
     display: none;
 }
 
-/* Estilos adicionais para formulário */
 input, button {
     margin: 10px;
     padding: 10px;
     font-size: 16px;
 }
-
-#stock-name{
-    font-size: 24px;
-    border-radius: 25px;
-    outline: 2px solid #FF5200;
-    background-color: #190564;
-    color: white;
-    padding:20px
+#cabecalhoDaAcao {
+    display: flex;
+    flex-direction: column; 
+    align-items: center; 
+    background-color: #190564; 
+    color: white; 
+    border: 2px solid #FF5200; 
+    border-radius: 25px; 
+    padding: 15px 20px;
+    font-family: Arial, sans-serif; 
+    margin-top: 25px;
 }
 
-#cabecalhoDaAcao{
-    background-color: #190564;
+#stock-name {
+    font-size: 30px; 
+    font-weight: bold;
+    text-align: center; 
+    margin-bottom: 10px; 
+    border-bottom: 2px solid #FF5200;
+    margin-top: 5px;
+}
+
+#linha-inferior {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    width: 100%;
     font-size: 18px;
-    border-radius: 25px;
-    outline: 2px solid #FF5200;
-    color: white;
+}
+
+#precoEVariacao{
+    display: flex; 
     align-items: center;
-    display: grid;
-    grid-template-columns: 1fr 3fr;
-    grid-template-rows: 1vh;
+
+}
+
+#stock-symbol {
+    color: white;
+    font-weight: bold;
+}
+
+#stock-change {
+    font-weight: bold;
+    margin-left: 15px;
+    font-size: 20px;    
+}
+
+#stock-price {
+    color: white;
+    font-weight: bold;
+    margin-left: 10px;
+}
+
+#stock-change, #stock-price{
+    background-color: #030028;
+    padding: 15px;
+    border-radius: 25px;
+}
+
+#informacoesCentrais{
+    margin-top: 30px;
+    display: flex; 
+    justify-content: space-between;
+    align-items: center; 
+    width: 100%;
+}
+
+#lucroPorAcao, #indicePrecoLucro, #volume{
+    background-color: #190564;
+    border: 2px solid #FF5200; 
+    border-radius: 25px;
+    margin: 5px;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    width: 225px;
+}
+
+#informacoesCentrais {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin-bottom: 20px; 
+}
+
+#grafico{
+    align-items: center; 
+    color:aqua;
+    margin: 5px;
+    border:2px solid white;
+    padding: 100px;
+    padding-inline: 25%;
+}
+
+#informacoesLaterais {
+    display: flex;
+    flex-direction: column; 
+    gap: 10px; 
+    padding: 10px;
+}
+
+#informacoesInferiores {
+    margin-top: 30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    margin-right: 10px; 
+    margin-left: 10px; 
+}
+
+#linhaSuperior, #linhaInferior {
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    width: 100%; 
+    height: 100px; 
+}
+
+#abertura, #fechamento, #variacao,
+#maximoDia, #minimoDia, #media {
+    background-color: #190564;
+    border: 2px solid #FF5200;
+    border-radius: 25px;
+    color: white;
+    text-align: center;
+    padding: 25px;
+    width: 300px;
+    
 }
 

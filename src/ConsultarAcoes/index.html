@@ -38,27 +38,42 @@
             <p id="carregando">Carregando...</p>
 
             <div id="stock-info" style="display: none;">
-                <h2 id="stock-name"></h2>
                 
                 <div id="cabecalhoDaAcao">
-                    <h3 id="stock-symbol"></h3>
-                    <div><strong>Variação:</strong> <span id="stock-change"></span> %</div>
-                    <div><strong>Preço:</strong> R$ <span id="stock-price"></span></div>
+                    <h2 id="stock-name">Petróleo Brasileiro S.A. - Petrobras</h2>
+                    <div id="linha-inferior">
+                        <div id="precoEVariacao">
+                            <h3 id="stock-symbol">KLB4</h3>
+                            <div><strong></strong> <span id="stock-change">/span>%</div>
+                        </div>
+                        <div id="precoCabecalho">
+                            <strong>Preço: </strong> R$ <span id="stock-price"></span>
+                        </div>
+                    </div>
                 </div>
-
-                    <div>GRAFICO</div>
-
-                <div><strong>Lucro por Ação:</strong> R$ <span id="stock-eps"></span></div>
-                <div><strong>Índice preço/lucro:</strong> <span id="stock-pe"></span>
-                <div><strong>Volume:</strong> <span id="stock-volume"></span></div>
-
-                <div><strong>Abertura:</strong> R$ <span id="stock-open"></span></div>
-                <div><strong>Previsao de Fechamento:</strong> R$ <span id="stock-previousClose"></span></div>
-                <div><strong>Variação do dia:</strong> R$ <span id="stock-changesPercentage"></span></div>
                 
-                <div><strong>Máximo do dia:</strong> R$ <span id="stock-dayHigh"></span></div>
-                <div><strong>Mínimo do dia:</strong> R$ <span id="stock-dayLow"></span></div>
-               <div><strong>Média em 50 dias:</strong> R$ <span id="stock-priceAvg50"></span></div>
+                <div id="informacoesCentrais">
+                    <div id="grafico">GRAFICO</div>
+                
+                    <div id="informacoesLaterais">
+                        <div id="lucroPorAcao"><strong>Lucro por Ação:</strong> R$ <span id="stock-eps"></span></div>
+                        <div id="indicePrecoLucro"><strong>Índice preço/lucro:</strong> <span id="stock-pe"></span></div>
+                        <div id="volume"><strong>Volume:</strong> <span id="stock-volume"></span></div>
+                    </div>
+                </div>
+                
+                <div id="informacoesInferiores">
+                    <div id="linhaSuperior">
+                        <div id="abertura"><strong>Abertura:</strong> R$ <span id="stock-open"></span></div>
+                        <div id="fechamento"><strong>Previsão de Fechamento:</strong> R$ <span id="stock-previousClose"></span></div>
+                        <div id="variacao"><strong>Variação do dia:</strong> R$ <span id="stock-changesPercentage"></span></div>
+                    </div>
+                    <div id="linhaInferior">
+                        <div id="maximoDia"><strong>Máximo do dia:</strong> R$ <span id="stock-dayHigh"></span></div>
+                        <div id="minimoDia"><strong>Mínimo do dia:</strong> R$ <span id="stock-dayLow"></span></div>
+                        <div id="media"><strong>Média em 50 dias:</strong> R$ <span id="stock-priceAvg50"></span></div>
+                    </div>
+                </div>
                 
             </div>
         </div>

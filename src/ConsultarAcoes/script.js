@@ -32,6 +32,12 @@ async function getStockData() {
         document.getElementById('stock-dayLow').textContent = data[0].dayLow;
         document.getElementById('stock-priceAvg50').textContent = data[0].priceAvg50;
 
+        if (data[0].changesPercentage > 0) {
+            document.getElementById('stock-change').style.color = 'green';
+        } else {
+            document.getElementById('stock-change').style.color = 'red';
+        }
+        
         // Exibir os dados e esconder o "Carregando"
         stockInfo.style.display = 'block';
         carregando.style.display = 'none';
