@@ -1,11 +1,10 @@
-
-body{
+body {
     background-color: #030028;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    color:white;
 }
-
 
 .cabecalho {
     background-color: #190564;
@@ -19,36 +18,60 @@ body{
     justify-items: center;
     align-items: center;
     display: flex;
+    z-index: 10; /* Adicionado */
 }
 
-#logo{
+main {
+    padding-top: 130px; /* Adicionado */
+}
+
+#logo {
     margin-left: 10px;
     height: 150px;
     width: auto;
 }
 
-a{
+a {
     text-decoration: none;
     color: white;
     margin-left: 15px;
 }
 
-.abas{
+.abas {
     position: absolute;
     right: 25px;
 }
 
-.registrar{
+.registrar {
     background-color: #FF5200;
     border-radius: 10px;
     padding: 8px;
 }
 
-div {
-    display: none;
+#introducao, #tecnologias, #participantes{
+    margin-top: 20px;
+    margin-left: 25px;
+    margin-right: 25px;
+    font-size: 17px;
+    border: 2px solid #FF5200;
+    border-radius: 25px;
 }
 
+#participantes{
+    margin-bottom: 50px;
+}
 
+h1{
+    margin-left: 10px;
+}
+
+p{
+    margin-left: 30px;
+}
+#textoIntroducao{
+    margin-top: 10px;
+    margin-left: 30px;
+}
 
 
 

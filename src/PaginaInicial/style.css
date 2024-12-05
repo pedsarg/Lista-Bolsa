@@ -44,6 +44,36 @@ a{
     padding: 8px;
 }
 
+#user-actions {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+#avatar {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    background-color: #ccc; /* Placeholder color */
+    background-image: url('../Imagens/logo.png'); /* Imagem de avatar */
+    background-size: cover;
+    background-position: center;
+    cursor: pointer;
+}
+
+#logout-button {
+    background-color: #FF5200;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+#logout-button:hover {
+    background-color: #e04600;
+}
+
 
 
 
