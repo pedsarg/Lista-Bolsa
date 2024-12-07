@@ -1,11 +1,9 @@
-
-body{
+body {
     background-color: #030028;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
 }
-
 
 .cabecalho {
     background-color: #190564;
@@ -15,50 +13,62 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px;
-    justify-items: center;
-    align-items: center;
+    height: 120px; /* Altura do cabeçalho */
     display: flex;
+    justify-content: space-between; /* Espaço entre logo, abas e ações do usuário */
+    align-items: center; /* Alinha verticalmente todos os itens */
+    padding: 0 20px; /* Espaçamento lateral */
+    box-sizing: border-box; /* Garante que o padding não afete o layout */
 }
 
-#logo{
-    margin-left: 10px;
-    height: 150px;
+#logo {
+    height: 100px; /* Ajusta a altura do logo */
     width: auto;
 }
 
-a{
+.abas {
+    display: flex;
+    gap: 15px;
+}
+
+.abas a {
     text-decoration: none;
     color: white;
-    margin-left: 15px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
 }
 
-.abas{
-    position: absolute;
-    right: 25px;
-}
-
-.registrar{
-    background-color: #FF5200;
-    border-radius: 10px;
-    padding: 8px;
+.abas a:hover {
+    background-color: #2b0a8f;
+    border-radius: 5px;
 }
 
 #user-actions {
     display: flex;
-    align-items: center;
+    align-items: center; /* Alinha os itens do container do usuário verticalmente */
     gap: 10px;
 }
 
-#avatar {
+.registrar {
+    background-color: #FF5200;
+    border-radius: 10px;
+    padding: 8px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
+}
+
+.registrar:hover {
+    background-color: #e04600;
+}
+
+.avatar-container img {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    background-color: #ccc; /* Placeholder color */
-    background-image: url('../Imagens/logo.png'); /* Imagem de avatar */
-    background-size: cover;
-    background-position: center;
-    cursor: pointer;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle; /* Alinha a imagem verticalmente */
 }
 
 #logout-button {
@@ -68,13 +78,12 @@ a{
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block; /* Garante que o botão tenha o tamanho correto */
+    height: 40px; /* Garante que o botão de logout tenha a mesma altura do avatar */
+    vertical-align: middle; /* Alinha verticalmente o botão */
 }
 
 #logout-button:hover {
     background-color: #e04600;
 }
-
-
-
-
-
