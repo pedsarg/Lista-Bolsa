@@ -4,6 +4,7 @@ import cors from 'cors';
 
 const app = express();
 const port = 3000;
+const port2 = 3001;
 
 app.use(cors());
 // Rota para buscar os dados da ação
@@ -34,6 +35,21 @@ app.get('/api/stock', async (req, res) => {
     } catch (error) {
         res.status(500).json({ error: 'Erro ao buscar dados da API' });
     }
+});
+
+app.get('/api/historicoData', async (req, res) => {
+    const symbol = req.query.symbol; // Recebe o símbolo da ação da query string
+    
+    try {
+      const response = await axios.get(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}.SA?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`);
+      res.json(response.data); // Envia os dados para o frontend
+    } catch (error) {
+      res.status(500).json({ error: 'Erro ao consumir a API' });
+    }
+});
+  
+app.listen(port2, () => {
+    console.log(`Servidor rodando na porta ${port2}`);
 });
 
 // Iniciar o servidor

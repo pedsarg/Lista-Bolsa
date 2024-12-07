@@ -1,4 +1,3 @@
-// URL do JSON (pode ser um arquivo local ou uma API)
 const jsonUrl = '../backend/statusLogin.json';
 const userActions = document.getElementById('user-actions');
 
@@ -8,10 +7,10 @@ fetch(jsonUrl)
     if (!response.ok) {
       throw new Error('Erro ao buscar o JSON: ' + response.status);
     }
-    return response.json(); // Converte para objeto JavaScript
+    return response.json(); 
   })
   .then(data => {
-    // Verifica se a propriedade "status" existe no JSON
+
     if ('status' in data) {
       if (data.status === true) {
         userActions.innerHTML = `
@@ -20,7 +19,6 @@ fetch(jsonUrl)
     <button id="logout-button">Logout</button>
 </div>
         `;
-                    // Adiciona funcionalidade ao botão de logout
                     const logoutButton = document.getElementById('logout-button');
                     logoutButton.addEventListener('click', () => {
                       fetch('http://localhost:3010/api/logout', {
@@ -33,8 +31,7 @@ fetch(jsonUrl)
                         return response.json();
                     })
                     .then(data => {
-                        console.log(data.message); // Exibe mensagem de sucesso
-                        // Aqui você pode redirecionar o usuário para a página de login, por exemplo:
+                        console.log(data.message); 
                     })
                     .catch(error => {
                         console.error('Erro:', error);

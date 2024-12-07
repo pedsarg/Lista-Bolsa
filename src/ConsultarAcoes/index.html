@@ -6,6 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
     <script src="script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
     <title>Consultar Ações</title>
 </head>
 
@@ -20,8 +22,6 @@
                 <a href="../Calculadora/index.html">Calculadora de Ganhos</a>
                 <a href="../Postagens/index.html">Fórum</a>
                 <a href="../Sobre/index.html">Sobre</a>
-                <a class="registrar" href="../LoginCadastro/login/index.html">Login</a>
-                <a class="registrar" href="../LoginCadastro/cadastro/index.html">Cadastro</a>
             </nav>
         </div>
     </header>
@@ -53,7 +53,9 @@
                 </div>
                 
                 <div id="informacoesCentrais">
-                    <div id="grafico">GRAFICO</div>
+                    <div id="grafico">
+                        <canvas id="myChart"></canvas>
+                    </div>                    
                 
                     <div id="informacoesLaterais">
                         <div id="lucroPorAcao"><strong>Lucro por Ação:</strong> R$ <span id="stock-eps"></span></div>

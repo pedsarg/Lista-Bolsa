@@ -4,7 +4,6 @@ body{
     margin: 0;
     padding: 0;
 }
-
 .cabecalho {
     background-color: #190564;
     color: white;
@@ -13,33 +12,38 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px;
-    justify-items: center;
-    align-items: center;
+    height: 120px; 
     display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
 }
 
-#logo{
-    margin-left: 10px;
-    height: 150px;
+#logo {
+    height: 100px; 
     width: auto;
 }
 
-a{
+.abas {
+    display: flex;
+    gap: 15px;
+    align-items: center; 
+}
+
+.abas a {
     text-decoration: none;
     color: white;
-    margin-left: 15px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
 }
 
-.abas{
-    position: absolute;
-    right: 25px;
-}
 
-.registrar{
-    background-color: #FF5200;
-    border-radius: 10px;
-    padding: 8px;
+.abas a:hover {
+    background-color: #2b0a8f;
+    border-radius: 5px;
 }
 
 footer {
@@ -53,7 +57,7 @@ footer {
 }
 
 main {
-    padding: 60px 20px; /* Para evitar sobreposição com o header */
+    padding: 60px 20px; 
     color:white
 }
 
@@ -156,14 +160,11 @@ input, button {
     margin-bottom: 20px; 
 }
 
-#grafico{
-    align-items: center; 
-    color:aqua;
-    margin: 5px;
-    border:2px solid white;
-    padding: 100px;
-    padding-inline: 25%;
+#chartCanvas {
+    width: 100%;
+    height: 400px;
 }
+
 
 #informacoesLaterais {
     display: flex;

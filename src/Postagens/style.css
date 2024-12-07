@@ -1,9 +1,9 @@
-
-body{
+body {
     background-color: #030028;
     font-family: Arial, sans-serif;
     margin: 0;
     padding: 0;
+    padding-top: 140px; /* Ajuste o valor conforme o tamanho do cabeçalho */
 }
 
 
@@ -15,34 +15,176 @@ body{
     top: 0;
     left: 0;
     width: 100%;
-    height: 120px;
-    justify-items: center;
-    align-items: center;
+    height: 120px; 
     display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    padding: 0 20px; 
+    box-sizing: border-box; 
 }
 
-#logo{
-    margin-left: 10px;
-    height: 150px;
+#logo {
+    height: 100px; 
     width: auto;
 }
 
-a{
+.abas {
+    display: flex;
+    gap: 15px;
+    align-items: center; 
+}
+
+.abas a {
     text-decoration: none;
     color: white;
-    margin-left: 15px;
+    padding: 8px 12px;
+    transition: background-color 0.3s;
+    display: flex;
+    align-items: center;
 }
 
-.abas{
-    position: absolute;
-    right: 25px;
+
+.abas a:hover {
+    background-color: #2b0a8f;
+    border-radius: 5px;
 }
 
-.registrar{
+#user-actions {
+    display: flex;
+    align-items: center; 
+    gap: 10px;
+}
+
+.registrar {
     background-color: #FF5200;
     border-radius: 10px;
     padding: 8px;
+    text-decoration: none;
+    color: white;
+    transition: background-color 0.3s;
 }
+
+.registrar:hover {
+    background-color: #FF5200;
+}
+
+.avatar-container img {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 10px;
+    vertical-align: middle; 
+}
+
+#logout-button {
+    background-color: #FF5200;
+    color: white;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    display: inline-block; 
+    height: 40px; 
+    vertical-align: middle; 
+}
+
+#logout-button:hover {
+    background-color: #FF5200;
+}
+
+.botaoNovaPostagem {
+    text-align: center; /* Alinha o botão no centro */
+    margin-top: 20px;   /* Espaçamento acima do botão */
+}
+
+#botaoCadastrar {
+    padding: 10px 20px; /* Define o tamanho do botão */
+    font-size: 16px;    /* Tamanho da fonte */
+    background-color: #4CAF50; /* Cor de fundo */
+    color: white;       /* Cor da fonte */
+    border: none;       /* Remove a borda */
+    cursor: pointer;    /* Mostra o cursor como mãozinha */
+}
+
+#botaoCadastrar:hover {
+    background-color: #45a049; /* Muda a cor de fundo quando o mouse passa por cima */
+}
+
+.botaoNovaPostagem {
+    text-align: left;
+    margin-top: 20px; 
+    margin-left: 50px;
+
+}
+
+#botaoPostar{
+    color:white;
+    background-color: #FF5200;
+    width: 150px;
+    height: 75px;
+    border-radius: 25px;
+    font-size: 17px;
+}
+
+.novaPostagem {
+    display: flex;
+    flex-direction: column; /* Organiza os itens em colunas (cada par label/input em uma linha) */
+    gap: 15px; /* Espaçamento entre os pares */
+    color:white;
+    background-color: #190564;
+    border: 2px solid #FF5200;
+    border-radius: 25px;
+    padding: 20px;
+}
+
+.tituloDiv, 
+.mensagemDiv {
+    display: flex; /* Organiza os itens dentro das divs em linha */
+    align-items: center; /* Alinha o texto do label e o input verticalmente */
+}
+
+.tituloDiv label, 
+.mensagemDiv label {
+    margin-right: 10px; /* Espaçamento entre o label e o input */
+    font-weight: bold; /* Faz o texto do label ficar em negrito */
+}
+
+.tituloDiv input,
+.mensagemDiv input {
+    width: 80%; /* Faz o input ocupar toda a largura disponível */
+    padding: 8px; /* Ajuste no padding para melhorar a aparência */
+    margin-top: 5px; /* Espaçamento superior do input */
+}
+
+.botoesPublicar {
+    display: flex;
+    justify-content: center; /* Centraliza os botões horizontalmente */
+    gap: 20px; /* Espaçamento entre os botões */
+    margin-top: 20px; /* Ajusta a margem superior conforme necessário */
+}
+
+
+#botaoPostar, #botaoCancelar {
+    width: 125px;
+    height: 50px;
+    font-size: 16px; /* Tamanho da fonte */
+    background-color: #FF5200; /* Cor de fundo */
+    color: white; /* Cor do texto */
+    border: none; /* Remove a borda */
+    border-radius: 25px; /* Bordas arredondadas */
+    cursor: pointer; /* Muda o cursor para mãozinha */
+    transition: background-color 0.3s; /* Transição suave para a cor de fundo */
+    margin-bottom: 25px;
+}
+
+#botaoPostar:hover {
+    background-color: #f3763c; /* Cor de fundo quando o mouse passa por cima */
+}
+
+
+
 
 
 

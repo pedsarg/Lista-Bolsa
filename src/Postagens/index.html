@@ -9,23 +9,42 @@
 <body>
     <header>
         <div class="cabecalho">
-            <a href="../PaginaInicial/index.html"><img id="logo" src="../Imagens/logo.png" alt="Logo do site"></a>
+            <a href="../PaginaInicial/index.html">
+                <img id="logo" src="../Imagens/logo.png" alt="Logo do site">
+            </a>
             <nav class="abas">
                 <a href="../PaginaInicial/index.html">Página inicial</a>
                 <a href="../ConsultarAcoes/index.html">Consultar Ações</a>
                 <a href="../Calculadora/index.html">Calculadora de Ganhos</a>
                 <a href="../Sobre/index.html">Sobre</a>
-                <a class="registrar" href="../LoginCadastro/login/index.html">Login</a>
-                <a class="registrar" href="../LoginCadastro/cadastro/index.html">Cadastro</a>
+                <div id="user-actions">
+                    <a class="registrar" id="login-button" href="../LoginCadastro/login/index.html">Login</a>
+                    <a class="registrar" id="register-button" href="../LoginCadastro/cadastro/index.html">Cadastro</a>
+                </div>
             </nav>
         </div>
     </header>
 
-    <main>
-        </main>
-
-    <footer>
-        </footer>
+    <div class="botaoNovaPostagem">            
+        <button id="botaoPostar" onclick="mostrarNovaPostagem()">Nova Postagem</button>
+    </div>
+    
+    <div class="novaPostagem" style="display: none;">
+        <div class="tituloDiv">
+            <label>Título: </label>
+            <input type="text" id="titulo" placeholder="Digite o título da postagem" required>     
+        </div>
+    
+        <div class="mensagemDiv">
+            <label>Mensagem: </label>
+            <input type="text" id="mensagem" placeholder="Digite sua mensagem" required> 
+        </div>
+        <div class="botoesPublicar">
+            <button id="botaoCancelar" type="button" onclick="cancelarPostagem()">Cancelar</button>
+            <button id="botaoPostar" type="button" onclick="postar()">Postar</button>
+        </div>
+    </div>
+    
 
     <script src="script.js"></script>
 </body>

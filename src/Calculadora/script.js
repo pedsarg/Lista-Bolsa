@@ -27,10 +27,10 @@ const calcGanhos = () => {
 
         const porcentagemDeGanhos = Number(porcentagemString);
 
-        ganhosPerdas.innerHTML = `R$ ${result}`; // Using backticks
-        valorEntrada.innerHTML = `R$ ${totalEntrada}`; // Correct ID used
-        valorSaida.innerHTML = `R$ ${valorSaidaValue}`; // Using backticks
-        porcentagem.innerHTML = `${porcentagemDeGanhos.toFixed(2)}%`; // Using backticks
+        ganhosPerdas.innerHTML = `R$ ${result}`;
+        valorEntrada.innerHTML = `R$ ${totalEntrada}`; 
+        valorSaida.innerHTML = `R$ ${valorSaidaValue}`; 
+        porcentagem.innerHTML = `${porcentagemDeGanhos.toFixed(2)}%`; 
         
 
         if(porcentagemDeGanhos < 0){
