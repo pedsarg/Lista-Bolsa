@@ -182,6 +182,7 @@ body {
 #botaoPostar:hover {
     background-color: #f3763c; /* Cor de fundo quando o mouse passa por cima */
 }
+
 .postagem {
     color: white;
     border: 2px solid #FF5200;

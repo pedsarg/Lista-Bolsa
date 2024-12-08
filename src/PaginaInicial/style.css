@@ -87,3 +87,167 @@ body {
 #logout-button:hover {
     background-color: #e04600;
 }
+
+/* Estilos gerais para o corpo da página */
+main {
+    padding-top: 175px;
+    padding-inline: 50px;
+}
+
+/* Contêiner principal que organiza os elementos em duas colunas */
+.elementosPrincipais {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* Dois elementos em colunas iguais */
+    gap: 10px; /* Espaçamento entre as colunas */
+    padding: 10px;
+}
+
+/* Estiliza os elementos dentro da grid */
+.elemento1, .elemento2 {
+    text-align: center; /* Centraliza o texto dentro de cada div */
+    display: grid;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Adiciona uma borda à esquerda da segunda coluna */
+.elemento2 {
+    border-left: 1px solid #FF5200;
+}
+
+/* Estilo específico para os cartões das ações favoritas */
+.acaoFav {
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+    border: 1px solid #FF5200;
+    border-radius: 25px;
+    width: 350px;
+    height: 75px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Estilos para os títulos */
+h2, h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Ajustes para a primeira página */
+h1 {
+    color: white;
+    font-size: 24px;
+    margin-top: 300px;
+}
+
+/* Ajusta o estilo da nova ação inserida dinamicamente */
+#acoes-favoritas-container .acao {
+    background-color: #2b0a8f;
+    display: grid;
+    justify-content: center;
+    align-items: center;
+    grid-template-columns: 1fr 1fr;
+    color: white;
+    border: 1px solid #FF5200;
+    border-radius: 25px;
+    width: 350px;
+    height: 75px;
+    margin-top: 25px;
+    margin-bottom: 10px;
+}
+
+/* Ajuste adicional para garantir que os conteúdos da ação fiquem centralizados */
+#acoes-favoritas-container .acao h2, #acoes-favoritas-container .acao h3 {
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para os botões de navegação */
+.buttons-container {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    align-items: center;
+    margin-top: 20px;
+}
+
+.navigate-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #FF5200;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    width: 250px;
+    height: 75px;
+    text-align: center;
+}
+
+.navigate-button:hover {
+    background-color: #e14f00;
+}
+
+
+.postagem {
+    color: white;
+    border: 2px solid #FF5200;
+    border-radius: 25px;
+    margin-left: 50px;
+    margin-right: 50px;
+    margin-top: 50px;
+    padding: 20px;
+    background-color: #190564;
+    margin-bottom: 30px;
+}
+
+.cabecalhoDaPostagem {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.tituloPostagem {
+    font-size: 20px;
+    font-weight: bold;
+    margin-left: 20px;
+}
+
+.dadosDaPostagem {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 8px; /* Espaço entre o título e os dados */
+    padding-left: 30px; /* Adiciona espaço extra à esquerda de toda a área de dados */
+}
+
+
+#usuarioDaPostagem {
+    margin-left: 100px; /* Aumente o valor de margin-left */
+    flex: 1;
+    text-align: left; /* Alinha à esquerda */
+}
+
+
+#dataDaPostagem {
+    flex: 1;
+    text-align: right; /* Alinha à direita */
+}
+
+.conteudo {
+    margin-top: 20px;
+    font-size: 15px;
+    background-color: #030028;
+    border-radius: 25px;
+    padding: 15px;
+}
+
+#tituloUltimaPostagem{
+    font-size: 30px;
+    color: #fff;
+    margin-top: 50px;
+}

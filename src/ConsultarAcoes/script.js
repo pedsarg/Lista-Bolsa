@@ -11,8 +11,8 @@ async function getStockData() {
   carregando.style.display = 'block';
   try {
     const [response, historicoResponse] = await Promise.all([
-      fetch(`http://localhost:3001/api/stock?symbol=${symbol}`),
-      fetch(`http://localhost:3001/api/historicoData?symbol=${symbol}`)
+      fetch(`http://localhost:3000/api/stock?symbol=${symbol}`),
+      fetch(`http://localhost:3000/api/historicoData?symbol=${symbol}`)
   ]);
 
       const data = await response.json();

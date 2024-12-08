@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Paginal Inicial</title>
+    <title>Página Inicial</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -24,10 +24,43 @@
     </header>
 
     <main>
-        </main>
+        <div class="elementosPrincipais">
+            <div class="elemento1">
+                <!-- Contêiner para as ações favoritas -->
+                <div id="acoes-favoritas-container">
+                    <!-- Ações favoritas serão inseridas aqui dinamicamente -->
+                </div>
+            </div>
+            <div class="elemento2">
+                <!-- Botões para redirecionamento para outras páginas -->
+                <div class="buttons-container">
+                    <a href="../ConsultarAcoes/index.html">
+                        <button class="navigate-button">Consultar Ações</button>
+                    </a>
+                    <a href="../Calculadora/index.html">
+                        <button class="navigate-button">Calculadora de Ganhos</button>
+                    </a>
+                    <a href="../Postagens/index.html">
+                        <button class="navigate-button">Fórum</button>
+                    </a>
+                    <a href="../Sobre/index.html">
+                        <button class="navigate-button">Sobre</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="postagens">
+            <label id="tituloUltimaPostagem">Últimas postagens:</label>
+            <div class="listaDePostagem">
+                <!-- As postagens serão inseridas aqui dinamicamente -->
+            </div>
+        </div>
+    </main>
+    
 
     <footer>
-        </footer>
+        <!-- Você pode adicionar conteúdo aqui, se necessário -->
+    </footer>
 
     <script src="script.js"></script>
 </body>

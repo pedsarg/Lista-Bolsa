@@ -129,7 +129,7 @@ app.get('/api/cadastro', async (req, res) => {
     const acoesFavoritasInput = JSON.parse(req.query.acoesFavoritas);
 
     if (!usernameInput || !passwordInput || !emailInput) {
-        return res.status(400).json({ error: "Preencha todos os campos!"});
+        return res.status(400).json({ error: "Preencha todos os campos!" });
     }
 
     try {
@@ -140,7 +140,10 @@ app.get('/api/cadastro', async (req, res) => {
         } else {
             const senhaHash = await bcrypt.hash(passwordInput, 15);
 
-            // Verificar ação antes de gravar no banco
+            // Verificar ações antes de gravar no banco
+            let acoesParaGravar = []; // Array para armazenar as ações que serão gravadas
+
+            // Primeiro loop: Verificando todas as ações
             for (const acao of acoesFavoritasInput) {
                 const url = `https://financialmodelingprep.com/api/v3/quote/${acao}.SA?apikey=eL0e2agL7ulQFbpiHLKxK2dtAtNuH7V8`;
 
@@ -150,25 +153,26 @@ app.get('/api/cadastro', async (req, res) => {
 
                     // Verificando se a API retornou erro
                     if (!data || data.length === 0) {
-                        return res.status(400).json({ error: `Símbolo inválido ou erro na API para a ação: ${acao}` });
+                        console.error(`Símbolo inválido ou erro na API para a ação: ${acao}`);
+                        // Adiciona a ação à lista de ações que precisam ser verificadas
+                        continue; // Continua com a próxima ação sem interromper o loop
                     }
 
                     const symbol = data[0]?.symbol;
+                    
+                    // Armazenando a ação para ser gravada posteriormente
+                    acoesParaGravar.push(acao);
 
-                    // Gravar ação no banco
-                    const gravarAcoes = await gravarAcoesFavoritas(acao, usernameInput);
-                    if (!gravarAcoes) {
-                        return res.status(400).json({ error: `Erro ao gravar ação favorita: ${acao}` });
-                    }
                 } catch (error) {
                     console.error(`Erro ao processar ação ${acao}:`, error.message);
-                    return res.status(400).json({ error: `Erro ao buscar dados da API para a ação: ${acao}` });
+                    // Em caso de erro, pode-se decidir continuar com a próxima ação
+                    continue;
                 }
-
             }
 
             const statusCadastro = await gravarCadastro(usernameInput, senhaHash, emailInput);
             if (statusCadastro) {
+                // Atualizar o arquivo com os novos dados
                 fs.readFile(filePath, 'utf8', (err, data) => {
                     if (err) {
                         console.log('Erro ao ler o arquivo:', err);
@@ -188,7 +192,23 @@ app.get('/api/cadastro', async (req, res) => {
                         console.log('Erro ao analisar JSON:', err);
                     }
                 });
-                res.json({ status: 'Cadastro realizado com sucesso!' });
+
+                // Segundo loop: Gravando as ações no banco, após todas as verificações
+                for (const acao of acoesParaGravar) {
+                    try {
+                        const gravarAcoes = await gravarAcoesFavoritas(acao, usernameInput);
+                        if (!gravarAcoes) {
+                            console.error(`Erro ao gravar ação favorita: ${acao}`);
+                            return res.status(400).json({ error: `Erro ao gravar ação favorita: ${acao}` });
+                        }
+                    } catch (error) {
+                        console.error(`Erro ao gravar a ação ${acao}:`, error.message);
+                        return res.status(400).json({ error: `Erro ao gravar a ação: ${acao}` });
+                    }
+                }
+
+                // Enviar resposta de sucesso apenas após todos os processos concluídos
+                res.status(200).json({ status: true, message: 'Cadastro realizado com sucesso!' });
             } else {
                 return res.status(400).json({ error: 'Erro ao realizar cadastro!' });
             }
@@ -199,6 +219,7 @@ app.get('/api/cadastro', async (req, res) => {
         res.status(500).json({ error: 'Banco de dados indisponível' });
     }
 });
+
 
 app.post('/api/logout', (req, res) => {
     restoreOriginalData(); // Chama a função para restaurar os dados

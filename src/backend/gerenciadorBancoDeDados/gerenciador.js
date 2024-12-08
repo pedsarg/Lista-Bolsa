@@ -277,11 +277,16 @@ function gravarDadosAcao(codigoPapel, dados) {
     });
 }
 
-function buscarDadosAcoesFavoritas() {
+function buscarDadosAcoesFavoritas(idUsuario) {
+    const query = `
+        SELECT * FROM acoesFavoritas
+        WHERE idUsuario = ?;
+    `;
+
     return new Promise((resolve, reject) => {
-        con.query('SELECT * FROM acoesFavoritas', (err, results) => {
+        con.query(query, [idUsuario], (err, results) => {
             if (err) {
-                console.error('Erro ao buscar dados da tabela acoesFavoritas:', err);
+                console.error('Erro ao buscar ações favoritas:', err);
                 return reject(err);
             }
             resolve(results);
@@ -292,5 +297,5 @@ function buscarDadosAcoesFavoritas() {
 
 
 // Exportando a função
-export {dadosDoLogin, verificarUsernameEmail, gravarCadastro, gravarAcoesFavoritas, gravarPostagens, buscarPostagens, buscarTodosCodigosPapel, gravarDadosAcao, buscarDadosAcoesFavoritas};
+export {dadosDoLogin, verificarUsernameEmail, gravarCadastro, gravarAcoesFavoritas, gravarPostagens, buscarPostagens, buscarTodosCodigosPapel, gravarDadosAcao, buscarDadosAcoesFavoritas, buscarID};
 

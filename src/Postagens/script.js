@@ -155,6 +155,7 @@ function buscarPostagensFrontend() {
   fetch('http://localhost:3002/api/postagens')  // Endpoint que você criou no backend
     .then(response => response.json())
     .then(postagens => {
+      console.log(postagens); // Verifique se as postagens estão sendo retornadas corretamente
       const listaDePostagem = document.querySelector('.listaDePostagem');
       listaDePostagem.innerHTML = '';  // Limpar postagens existentes antes de adicionar novas
 
@@ -209,6 +210,7 @@ function buscarPostagensFrontend() {
       console.error('Erro ao buscar postagens:', error);
     });
 }
+
 
 // Chama a função a cada 5 segundos para buscar as postagens mais recentes
 setInterval(buscarPostagensFrontend, 5000);  // 5000ms = 5 segundos

@@ -1,11 +1,10 @@
 import express from 'express';
 import axios from 'axios';
 import cors from 'cors';
-import {buscarTodosCodigosPapel, gravarDadosAcao, buscarDadosAcoesFavoritas} from './gerenciadorBancoDeDados/gerenciador.js';
+import {buscarTodosCodigosPapel, gravarDadosAcao, buscarDadosAcoesFavoritas, buscarID} from './gerenciadorBancoDeDados/gerenciador.js';
 
 const app = express();
 const port = 3000;
-const port2 = 3001;
 
 app.use(cors());
 // Rota para buscar os dados da ação
@@ -21,7 +20,7 @@ app.get('/api/stock', async (req, res) => {
         return res.status(400).json({ error: "O parâmetro 'symbol' é obrigatório." });
     }
 
-    const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}.SA?apikey=eL0e2agL7ulQFbpiHLKxK2dtAtNuH7V8`;
+    const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`;
 
     try {
         const response = await axios.get(url);
@@ -50,7 +49,7 @@ app.get('/api/historicoData', async (req, res) => {
     }
 });
   
-
+//atualiza os papeis
 async function processarCodigosPapel() {
     try {
         const codigosPapel = await buscarTodosCodigosPapel();
@@ -82,49 +81,59 @@ async function processarCodigosPapel() {
     }
 }
 
-
+// Rota para obter ações favoritas
 app.get('/api/acoesFavoritas', async (req, res) => {
+    const { idUsuario } = req.query;
+
+    console.log('Requisição recebida para /api/acoesFavoritas'); // Log para verificar que a requisição chegou
+
+    // Verifica se o idUsuario foi enviado
+    if (!idUsuario) {
+        console.log("Erro: 'idUsuario' não foi fornecido");
+        return res.status(400).json({ error: "O parâmetro 'idUsuario' é obrigatório." });
+    }
+
+    console.log(`Recebido idUsuario: ${idUsuario}`); // Log para ver o valor de idUsuario
+
     try {
-        // Chama a função que busca os dados da tabela
-        const dadosAcoes = await buscarDadosAcoesFavoritas();
+        // Chamando a função para buscar as ações favoritas
+        console.log('Buscando ações favoritas para o idUsuario:', idUsuario);
+        const acoesFavoritas = await buscarDadosAcoesFavoritas(idUsuario);
+        
+        // Verificando se a função retornou as ações
+        if (!acoesFavoritas || acoesFavoritas.length === 0) {
+            console.log(`Nenhuma ação favorita encontrada para o usuário ${idUsuario}`);
+        }
+        res.json(acoesFavoritas); // Envia os dados para o frontend
+    } catch (error) {
+        // Captura qualquer erro na função ou na consulta
+        console.error('Erro ao obter ações favoritas:', error); // Log detalhado do erro
+        res.status(500).json({ error: 'Erro ao obter ações favoritas' });
+    }
+});
 
-        // Imprime os dados no console
-        console.log('Dados da tabela acoesFavoritas:');
-        dadosAcoes.forEach((acao) => {
-            console.log(`ID: ${acao.idAcao}`);
-            console.log(`Código Papel: ${acao.codigoPapel}`);
-            console.log(`Última Atualização: ${acao.ultimaAtualizacao}`);
-            console.log(`Variação Diária: ${acao.variacaoDiaria}`);
-            console.log(`Valor: ${acao.valor}`);
-            console.log(`Lucro Ação: ${acao.lucroAcao}`);
-            console.log(`IPL: ${acao.ipl}`);
-            console.log(`Volume: ${acao.volume}`);
-            console.log(`Abertura: ${acao.abertura}`);
-            console.log(`Preço Fechamento: ${acao.prevFechamento}`);
-            console.log(`Variação Diária Real: ${acao.variacaoDiariaReal}`);
-            console.log(`Maior Valor do Dia: ${acao.maiorValorDia}`);
-            console.log(`Menor Valor do Dia: ${acao.menorValorDia}`);
-            console.log(`Média: ${acao.media}`);
-            console.log('------------------------------');
-        });
+app.get('/api/buscarID', async (req, res) => {
+    const { username } = req.query;
 
-        // Responde ao cliente com os dados
-        res.json(dadosAcoes);
-    } catch (err) {
-        res.status(500).json({ error: 'Erro ao buscar dados da tabela acoesFavoritas' });
+    if (!username) {
+        return res.status(400).json({ error: "O parâmetro 'username' é obrigatório." });
+    }
+
+    try {
+        const id = await buscarID(username);
+
+        if (id) {
+            return res.json({ id });
+        } else {
+            return res.status(404).json({ error: "Usuário não encontrado." });
+        }
+    } catch (error) {
+        console.error('Erro ao buscar ID:', error);
+        return res.status(500).json({ error: "Erro ao buscar o ID do usuário." });
     }
 });
 
 
-
-
-
-
-app.listen(port2, () => {
-    console.log(`Servidor rodando na porta ${port2}`);
-});
-
-// Iniciar o servidor
 app.listen(port, () => {
     console.log(`Servidor rodando em http://localhost:${port}`);
 });
