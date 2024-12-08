@@ -88,7 +88,7 @@ function postar() {
   var ano = data.getFullYear();
   var hora = String(data.getHours()).padStart(2, '0');
   var minuto = String(data.getMinutes()).padStart(2, '0');
-  var dataHora = `${dia}/${mes}/${ano} ${hora}:${minuto}`;
+  var dataHora = `${dia}/${mes}/${ano}`;
 
   // Verifica se o usuário está definido
   if (!usuario) {
@@ -132,24 +132,95 @@ function postar() {
   buscarPostagensFrontend();
 }
 
+
+function formatarData(dataPostagem) {
+  const data = new Date(dataPostagem);
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0');  // Meses começam do 0, então somamos 1
+  const ano = data.getFullYear();
+
+  return `${dia}/${mes}/${ano}`;
+}
+
+function formatarData(dataPostagem) {
+  const data = new Date(dataPostagem);
+  const dia = String(data.getDate()).padStart(2, '0');
+  const mes = String(data.getMonth() + 1).padStart(2, '0');  // Mes começa do zero
+  const ano = data.getFullYear();
+  
+  return `${dia}/${mes}/${ano}`;  // Formato DD/MM/AAAA
+}
+
 function buscarPostagensFrontend() {
   fetch('http://localhost:3002/api/postagens')  // Endpoint que você criou no backend
-      .then(response => response.json())
-      .then(postagens => {
-          if (postagens.length > 0) {
-              console.log('Postagens encontradas:');
-              postagens.forEach(postagem => {
-                  console.log(`Username: ${postagem.username}`);
-                  console.log(`Data da Postagem: ${postagem.dataPostagem}`);
-                  console.log(`Título: ${postagem.titulo}`);
-                  console.log(`Conteúdo: ${postagem.conteudo}`);
-                  console.log('-----------------------------------');
-              });
-          } else {
-              console.log('Nenhuma postagem encontrada.');
-          }
-      })
-      .catch(error => {
-          console.error('Erro ao buscar postagens:', error);
-      });
+    .then(response => response.json())
+    .then(postagens => {
+      const listaDePostagem = document.querySelector('.listaDePostagem');
+      listaDePostagem.innerHTML = '';  // Limpar postagens existentes antes de adicionar novas
+
+      if (postagens.length > 0) {
+        console.log('Postagens encontradas:');
+        postagens.forEach(postagem => {
+          // Criando a nova div para a postagem
+          const postagemDiv = document.createElement('div');
+          postagemDiv.classList.add('postagem');
+
+          // Criando o cabeçalho da postagem (título e dados)
+          const cabecalhoDiv = document.createElement('div');
+          cabecalhoDiv.classList.add('cabecalhoDaPostagem');
+
+          const tituloPostagem = document.createElement('div');
+          tituloPostagem.classList.add('tituloPostagem');
+          const tituloLabel = document.createElement('label');
+          tituloLabel.textContent = postagem.titulo;
+          tituloPostagem.appendChild(tituloLabel);
+
+          const dadosDiv = document.createElement('div');
+          dadosDiv.classList.add('dadosDaPostagem');
+          const usuarioDaPostagem = document.createElement('label');
+          usuarioDaPostagem.textContent = postagem.username;
+          const dataLabel = document.createElement('label');
+          dataLabel.textContent = formatarData(postagem.dataPostagem);  // Formatar a data antes de exibir
+          dadosDiv.appendChild(usuarioDaPostagem);
+          dadosDiv.appendChild(dataLabel);
+
+          cabecalhoDiv.appendChild(tituloPostagem);
+          cabecalhoDiv.appendChild(dadosDiv);
+
+          // Criando o conteúdo da postagem
+          const conteudoDiv = document.createElement('div');
+          conteudoDiv.classList.add('conteudo');
+          const conteudoLabel = document.createElement('label');
+          conteudoLabel.textContent = postagem.conteudo;
+          conteudoDiv.appendChild(conteudoLabel);
+
+          // Adicionando o cabeçalho e o conteúdo à div da postagem
+          postagemDiv.appendChild(cabecalhoDiv);
+          postagemDiv.appendChild(conteudoDiv);
+
+          // Adicionando a nova postagem à lista
+          listaDePostagem.appendChild(postagemDiv);
+        });
+      } else {
+        console.log('Nenhuma postagem encontrada.');
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao buscar postagens:', error);
+    });
 }
+
+// Chama a função a cada 5 segundos para buscar as postagens mais recentes
+setInterval(buscarPostagensFrontend, 5000);  // 5000ms = 5 segundos
+
+// Executa imediatamente ao carregar a página
+buscarPostagensFrontend();
+
+// Chama a função a cada 5 segundos para buscar as postagens mais recentes
+setInterval(buscarPostagensFrontend, 5000);  // 5000ms = 5 segundos
+
+// Executa imediatamente ao carregar a página
+buscarPostagensFrontend();
+
+
+

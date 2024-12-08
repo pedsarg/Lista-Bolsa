@@ -118,10 +118,9 @@ async function gravarAcoesFavoritas(codigoPapel, username) {
 function formatarDataParaMySQL(data) {
     const partes = data.split(' '); // Divide data e hora
     const dataParte = partes[0].split('/'); // Divide dia/mês/ano
-    const horaParte = partes[1]; // Hora (HH:MM)
 
     // Formata a data para YYYY-MM-DD e retorna no formato completo
-    return `${dataParte[2]}-${dataParte[1]}-${dataParte[0]} ${horaParte}`;
+    return `${dataParte[2]}-${dataParte[1]}-${dataParte[0]}`;
 }
 
 function buscarPostagens() {
