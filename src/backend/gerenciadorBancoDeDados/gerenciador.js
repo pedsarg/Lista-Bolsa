@@ -95,10 +95,6 @@ async function gravarAcoesFavoritas(codigoPapel, username) {
   }
 
   function gravarPostagens(username, dataPostagem, titulo, conteudo) {
-    console.log('Username:', username);
-    console.log('Data da Postagem:', dataPostagem);
-    console.log('Título:', titulo);
-    console.log('Conteúdo:', conteudo);
 
     // Convertendo a data para o formato adequado para o MySQL (YYYY-MM-DD HH:MM:SS)
     const dataFormatada = formatarDataParaMySQL(dataPostagem);
@@ -111,6 +107,7 @@ async function gravarAcoesFavoritas(codigoPapel, username) {
                 if (err) {
                     return reject(err);
                 }
+
                 return resolve('Postagem gravada com sucesso!');
             }
         );
@@ -127,6 +124,32 @@ function formatarDataParaMySQL(data) {
     return `${dataParte[2]}-${dataParte[1]}-${dataParte[0]} ${horaParte}`;
 }
 
+function buscarPostagens() {
+    return new Promise((resolve, reject) => {
+        con.query('SELECT * FROM postagens', (err, rows) => {
+            if (err) {
+                return reject(err);
+            }
+
+            if (rows.length > 0) {
+                console.log('Postagens encontradas:');
+                rows.forEach(postagem => {
+                    console.log(`Username: ${postagem.username}`);
+                    console.log(`Data da Postagem: ${postagem.dataPostagem}`);
+                    console.log(`Título: ${postagem.titulo}`);
+                    console.log(`Conteúdo: ${postagem.conteudo}`);
+                    console.log('-----------------------------------');
+                });
+                return resolve(rows);
+            } else {
+                console.log('Nenhuma postagem encontrada.');
+                return resolve([]);
+            }
+        });
+    });
+}
+
+
 // Exportando a função
-export {dadosDoLogin, verificarUsernameEmail, gravarPostagens, gravarCadastro, gravarAcoesFavoritas};
+export {dadosDoLogin, verificarUsernameEmail, gravarCadastro, gravarAcoesFavoritas, gravarPostagens, buscarPostagens};
 

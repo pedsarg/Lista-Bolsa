@@ -129,4 +129,27 @@ function postar() {
 
   // Opcionalmente, você pode esconder a div de nova postagem após o post
   cancelarPostagem();
+  buscarPostagensFrontend();
+}
+
+function buscarPostagensFrontend() {
+  fetch('http://localhost:3002/api/postagens')  // Endpoint que você criou no backend
+      .then(response => response.json())
+      .then(postagens => {
+          if (postagens.length > 0) {
+              console.log('Postagens encontradas:');
+              postagens.forEach(postagem => {
+                  console.log(`Username: ${postagem.username}`);
+                  console.log(`Data da Postagem: ${postagem.dataPostagem}`);
+                  console.log(`Título: ${postagem.titulo}`);
+                  console.log(`Conteúdo: ${postagem.conteudo}`);
+                  console.log('-----------------------------------');
+              });
+          } else {
+              console.log('Nenhuma postagem encontrada.');
+          }
+      })
+      .catch(error => {
+          console.error('Erro ao buscar postagens:', error);
+      });
 }
