@@ -94,6 +94,39 @@ async function gravarAcoesFavoritas(codigoPapel, username) {
     }
   }
 
+  function gravarPostagens(username, dataPostagem, titulo, conteudo) {
+    console.log('Username:', username);
+    console.log('Data da Postagem:', dataPostagem);
+    console.log('Título:', titulo);
+    console.log('Conteúdo:', conteudo);
+
+    // Convertendo a data para o formato adequado para o MySQL (YYYY-MM-DD HH:MM:SS)
+    const dataFormatada = formatarDataParaMySQL(dataPostagem);
+
+    return new Promise((resolve, reject) => {
+        con.query(
+            'INSERT INTO postagens (username, dataPostagem, titulo, conteudo) VALUES (?, ?, ?, ?)', 
+            [username, dataFormatada, titulo, conteudo], 
+            (err, rows) => {
+                if (err) {
+                    return reject(err);
+                }
+                return resolve('Postagem gravada com sucesso!');
+            }
+        );
+    });
+}
+
+// Função para formatar a data no formato YYYY-MM-DD HH:MM:SS
+function formatarDataParaMySQL(data) {
+    const partes = data.split(' '); // Divide data e hora
+    const dataParte = partes[0].split('/'); // Divide dia/mês/ano
+    const horaParte = partes[1]; // Hora (HH:MM)
+
+    // Formata a data para YYYY-MM-DD e retorna no formato completo
+    return `${dataParte[2]}-${dataParte[1]}-${dataParte[0]} ${horaParte}`;
+}
+
 // Exportando a função
-export {dadosDoLogin, verificarUsernameEmail, gravarCadastro, gravarAcoesFavoritas};
+export {dadosDoLogin, verificarUsernameEmail, gravarPostagens, gravarCadastro, gravarAcoesFavoritas};
 

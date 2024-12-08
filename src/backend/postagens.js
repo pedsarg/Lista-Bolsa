@@ -1,5 +1,6 @@
 import express from 'express';
 import cors from 'cors';
+import {gravarPostagens} from './gerenciadorBancoDeDados/gerenciador.js';
 
 const app = express();
 const port = 3002;
@@ -13,10 +14,7 @@ app.use(express.json());
 app.post('/api/postar', (req, res) => {
   const { titulo, mensagem, dataHora, usuario } = req.body;
 
-  console.log('Título:', titulo);
-  console.log('Mensagem:', mensagem);
-  console.log('Data:', dataHora);
-  console.log('Usuário:', usuario);
+  gravarPostagens(usuario, dataHora, titulo, mensagem );
 
   // Aqui você pode salvar os dados em um banco de dados ou processá-los
   res.json({ message: 'Postagem recebida com sucesso!' });
