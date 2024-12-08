@@ -25,7 +25,7 @@ async function getStockData() {
       // Preenchendo os dados da ação
       document.getElementById('stock-name').textContent = data[0].name;
       document.getElementById('stock-symbol').textContent = data[0].symbol;
-      document.getElementById('stock-change').textContent = data[0].changesPercentage;
+      document.getElementById('stock-change').textContent = data[0].changesPercentage + " %";
       document.getElementById('stock-price').textContent = data[0].price;
 
       document.getElementById('stock-eps').textContent = data[0].eps;
@@ -34,12 +34,12 @@ async function getStockData() {
 
       document.getElementById('stock-open').textContent = data[0].open;
       document.getElementById('stock-previousClose').textContent = data[0].previousClose;
-      document.getElementById('stock-changesPercentage').textContent = data[0].changesPercentage;
+      document.getElementById('stock-changesPercentage').textContent = data[0].change;
       document.getElementById('stock-dayHigh').textContent = data[0].dayHigh;
       document.getElementById('stock-dayLow').textContent = data[0].dayLow;
       document.getElementById('stock-priceAvg50').textContent = data[0].priceAvg50;
 
-     
+     /*
      const yesterday = new Date();
      yesterday.setDate(yesterday.getDate() - 1); 
      const yesterdayString = yesterday.toISOString().split('T')[0]; 
@@ -48,7 +48,7 @@ async function getStockData() {
 
      const datas = dadosDiaAnterior.map(item => item.date.split(' ')[1]); // Extrai apenas o horário
      const closePrices = dadosDiaAnterior.map(item => item.close);
-     const closePricesInt = losePrices.map(price => Math.floor(price));
+     const closePricesInt = closePrices.map(price => Math.floor(price));
      
      if (dadosDiaAnterior.length > 0) {
          console.log('Dados Históricos do Dia Anterior:', closePricesInt);
@@ -58,26 +58,7 @@ async function getStockData() {
          return;
       }
 
-      /*AQUI - Implementando o gráfico*/
-
-      const ctx = document.getElementById('myChart');
-
-      new Chart(ctx, {
-        type: 'bar',
-        data: {
-          labels: datas,
-          datasets: closePricesInt
-        },
-        options: {
-          scales: {
-            y: {
-              beginAtZero: true
-            }
-          }
-        }
-      });
-
-
+      */
       if (data[0].changesPercentage > 0) {
           document.getElementById('stock-change').style.color = 'green';
       } else {

@@ -120,6 +120,7 @@ app.get('/api/login', async (req, res) => {
     }
 });
 
+
 // Função de cadastro
 app.get('/api/cadastro', async (req, res) => {
     const usernameInput = req.query.username;
@@ -198,7 +199,6 @@ app.get('/api/cadastro', async (req, res) => {
         res.status(500).json({ error: 'Banco de dados indisponível' });
     }
 });
-
 
 app.post('/api/logout', (req, res) => {
     restoreOriginalData(); // Chama a função para restaurar os dados
