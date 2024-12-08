@@ -20,7 +20,7 @@ app.get('/api/stock', async (req, res) => {
         return res.status(400).json({ error: "O parâmetro 'symbol' é obrigatório." });
     }
 
-    const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`;
+    const url = `https://financialmodelingprep.com/api/v3/quote/${symbol}.SA?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`;
 
     try {
         const response = await axios.get(url);
@@ -38,17 +38,28 @@ app.get('/api/stock', async (req, res) => {
     }
 });
 
+
+
 app.get('/api/historicoData', async (req, res) => {
     const symbol = req.query.symbol; // Recebe o símbolo da ação da query string
     
     try {
-      const response = await axios.get(`https://financialmodelingprep.com/api/v3/historical-chart/5min/${symbol}.SA?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`);
-      res.json(response.data); // Envia os dados para o frontend
-    } catch (error) {
-      res.status(500).json({ error: 'Erro ao consumir a API' });
-    }
+        const response = await axios.get(`https://financialmodelingprep.com/api/v3/historical-chart/1hour/${symbol}.SA?apikey=WnaTrN0Et58snuOj9n0ofkVTnHubddqA`);
+    
+        // Filtra os últimos 7 valores
+        const last7HoursData = response.data.slice(-7).map(item => ({
+          close: item.close,
+          date: item.date.split(' ')[1].slice(0, 5) // Extrai apenas o horário (HH:mm)
+        }));
+    
+        res.json(last7HoursData); // Envia os dados filtrados para o frontend
+      } catch (error) {
+        res.status(500).json({ error: 'Erro ao consumir a API' });
+      }
 });
   
+
+
 //atualiza os papeis
 async function processarCodigosPapel() {
     try {

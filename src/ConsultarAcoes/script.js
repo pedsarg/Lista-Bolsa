@@ -39,26 +39,20 @@ async function getStockData() {
       document.getElementById('stock-dayLow').textContent = data[0].dayLow;
       document.getElementById('stock-priceAvg50').textContent = data[0].priceAvg50;
 
-     /*
-     const yesterday = new Date();
-     yesterday.setDate(yesterday.getDate() - 1); 
-     const yesterdayString = yesterday.toISOString().split('T')[0]; 
 
-     const dadosDiaAnterior = historicoData.filter(item => item.date.startsWith(yesterdayString));
 
-     const datas = dadosDiaAnterior.map(item => item.date.split(' ')[1]); // Extrai apenas o horário
-     const closePrices = dadosDiaAnterior.map(item => item.close);
-     const closePricesInt = closePrices.map(price => Math.floor(price));
-     
-     if (dadosDiaAnterior.length > 0) {
-         console.log('Dados Históricos do Dia Anterior:', closePricesInt);
-     } else {
-         console.log('Nenhum dado histórico encontrado para o dia anterior.');
-         carregando.style.display = 'none';
-         return;
-      }
+            // Extrair os valores 'close' em um array
+    const closeValues = historicoData.map(item => item.close);
+    
+    // Extrair as horas, removendo os minutos (pegando só a parte antes dos ":")
+    const hours = historicoData.map(item => item.date.split(':')[0]);
+    
+    // Exibir os arrays no console
+    console.log('Close values:', closeValues);
+    console.log('Hours:', hours);
 
-      */
+
+
       if (data[0].changesPercentage > 0) {
           document.getElementById('stock-change').style.color = 'green';
       } else {
