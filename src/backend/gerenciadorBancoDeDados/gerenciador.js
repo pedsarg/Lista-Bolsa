@@ -272,6 +272,7 @@ function gravarDadosAcao(codigoPapel, dados) {
     });
 }
 
+
 function buscarDadosAcoesFavoritas(idUsuario) {
     const query = `
         SELECT * FROM acoesFavoritas

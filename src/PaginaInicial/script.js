@@ -92,46 +92,49 @@ function obterAcoesFavoritasFrontend(idUsuario) {
   console.log('Requisitando com a URL:', url);
 
   fetch(url)
-      .then(response => {
-          if (!response.ok) {
-              throw new Error('Erro na resposta da API: ' + response.status);
-          }
-          return response.json();
-      })
-      .then(data => {
-          // Verifica se há dados e atualiza os elementos na página
-          if (Array.isArray(data) && data.length > 0) {
-              // Limpa o contêiner para não adicionar elementos repetidos
-              const acoesFavoritasContainer = document.getElementById('acoes-favoritas-container');
-              acoesFavoritasContainer.innerHTML = ''; // Limpa as ações anteriores
+    .then(response => {
+      if (!response.ok) {
+        throw new Error('Erro na resposta da API: ' + response.status);
+      }
+      return response.json();
+    })
+    .then(data => {
+      // Verifica se há dados e atualiza os elementos na página
+      if (Array.isArray(data) && data.length > 0) {
+        // Limpa o contêiner para não adicionar elementos repetidos
+        const acoesFavoritasContainer = document.getElementById('acoes-favoritas-container');
+        acoesFavoritasContainer.innerHTML = ''; // Limpa as ações anteriores
 
-              // Para cada ação, cria um novo bloco
-              data.forEach(acao => {
-                  const acaoDiv = document.createElement('div');
-                  acaoDiv.classList.add('acao'); // Adiciona uma classe para estilizar a ação
+        // Para cada ação, cria um novo bloco
+        data.forEach(acao => {
+          const acaoDiv = document.createElement('div');
+          acaoDiv.classList.add('acao'); // Adiciona uma classe para estilizar a ação
 
-                  // Cria os elementos de título e valor para cada ação
-                  const codigoPapel = document.createElement('h2');
-                  codigoPapel.textContent = `${acao.codigoPapel}`;
+          // Gera um número aleatório entre -1.5 e 1.5 para variacaoDiariaReal
+          const variacaoDiariaRealAleatoria = (Math.random() * 3 - 1.5).toFixed(2);
 
-                  const variacaoDiariaReal = document.createElement('h3');
-                  variacaoDiariaReal.textContent = `${acao.variacaoDiariaReal}`;
+          // Cria os elementos de título e valor para cada ação
+          const codigoPapel = document.createElement('h2');
+          codigoPapel.textContent = `${acao.codigoPapel}`;
 
-                  // Adiciona os elementos à div da ação
-                  acaoDiv.appendChild(codigoPapel);
-                  acaoDiv.appendChild(variacaoDiariaReal);
+          const variacaoDiariaReal = document.createElement('h3');
+          variacaoDiariaReal.textContent = `${variacaoDiariaRealAleatoria}`;
 
-                  // Adiciona a div da ação ao contêiner de ações favoritas
-                  acoesFavoritasContainer.appendChild(acaoDiv);
-              });
-          } else {
-              obterAcoesFavoritasFrontend(1);
-              console.log('Nenhuma ação favorita encontrada.');
-          }
-      })
-      .catch(error => {
-          console.error('Erro ao obter ações favoritas:', error);
-      });
+          // Adiciona os elementos à div da ação
+          acaoDiv.appendChild(codigoPapel);
+          acaoDiv.appendChild(variacaoDiariaReal);
+
+          // Adiciona a div da ação ao contêiner de ações favoritas
+          acoesFavoritasContainer.appendChild(acaoDiv);
+        });
+      } else {
+        console.log('Nenhuma ação favorita encontrada.');
+        obterAcoesFavoritasFrontend(1);
+      }
+    })
+    .catch(error => {
+      console.error('Erro ao obter ações favoritas:', error);
+    });
 }
 
 
@@ -222,8 +225,9 @@ setInterval(buscarPostagensFrontend, 30000);  // 5000ms = 5 segundos
 // Executa imediatamente ao carregar a página
 buscarPostagensFrontend();
 
-processarCodigosPapel();
+//processarCodigosPapel();
 
+/*
 async function chamarProcessarCodigos() {
   try {
       const response = await fetch('http://localhost:3000/processar-codigos-papel', {
@@ -249,3 +253,5 @@ async function chamarProcessarCodigos() {
 function delay(ms) {
   return new Promise(resolve => setTimeout(resolve, ms));
 }
+
+*/

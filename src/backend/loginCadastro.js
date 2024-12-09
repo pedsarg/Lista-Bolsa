@@ -84,8 +84,8 @@ app.get('/api/login', async (req, res) => {
         const usuario = await dadosDoLogin(usernameInput);
         if (usuario) {
             const { username, password } = usuario;
-            const hashPassword = await bcrypt.hash(passwordInput, 15);
-            const senhasIguais = await bcrypt.compare(passwordInput, hashPassword);
+            //const hashPassword = await bcrypt.hash(passwordInput, 15);
+            const senhasIguais = await bcrypt.compare(passwordInput, password);
 
             if (senhasIguais) {
                 fs.readFile(filePath, 'utf8', (err, data) => {

@@ -99,12 +99,11 @@ async function validarCadastro() {
     // Limpa mensagens anteriores
     aviso.textContent = '';
 
-    for(let i =0; i<acoesFavoritas.length;i++){
+    for (let i = 0; i < acoesFavoritas.length; i++) {
         console.log(`${acoesFavoritas[i]}`);
     }
 
     try {
-        
         const acoesFavoritasJSON = JSON.stringify(acoesFavoritas);
         const response = await fetch(`http://localhost:3010/api/cadastro?username=${username}&password=${password}&email=${email}&acoesFavoritas=${acoesFavoritasJSON}`);
         const data = await response.json();
@@ -116,11 +115,19 @@ async function validarCadastro() {
             loading.style.display = 'none';
         }
 
-        if (data.status) {
-            aviso.style.display = 'block';
-            window.location.href = '../../PaginaInicial/index.html';
+        
+            // Verifica o status no arquivo JSON
+            const fileResponse = await fetch('../../backend/statusLogin.json');  // Caminho para o arquivo JSON
+            const fileData = await fileResponse.json();
 
-        }
+            // Verifica o campo "status" no JSON
+            if (fileData.status === true) {
+                // Redireciona para a página inicial
+                aviso.style.display = 'block';
+                window.location.href = '../../PaginaInicial/index.html';
+            }
+
+        
 
     } catch (error) {
         aviso.style.color = 'red';
@@ -129,3 +136,4 @@ async function validarCadastro() {
         loading.style.display = 'none';
     }
 }
+

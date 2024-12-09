@@ -92,10 +92,12 @@ async function processarCodigosPapel() {
     }
 }
 
+
 // Rota para o frontend chamar
 app.post('/processar-codigos-papel', async (req, res) => {
     try {
         await processarCodigosPapel();
+
         res.status(200).send({ message: 'Códigos processados com sucesso!' });
     } catch (error) {
         console.error('Erro ao processar códigos de papel:', error.message);
