@@ -121,6 +121,11 @@ app.get('/api/login', async (req, res) => {
 });
 
 
+
+function delay(ms) {
+    return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 // Função de cadastro
 app.get('/api/cadastro', async (req, res) => {
     const usernameInput = req.query.username;
@@ -143,33 +148,29 @@ app.get('/api/cadastro', async (req, res) => {
             // Verificar ações antes de gravar no banco
             let acoesParaGravar = []; // Array para armazenar as ações que serão gravadas
 
+            /*
             // Primeiro loop: Verificando todas as ações
             for (const acao of acoesFavoritasInput) {
                 const url = `https://financialmodelingprep.com/api/v3/quote/${acao}.SA?apikey=eL0e2agL7ulQFbpiHLKxK2dtAtNuH7V8`;
-
                 try {
                     const response = await axios.get(url);
                     const data = response.data;
-
-                    // Verificando se a API retornou erro
+            
                     if (!data || data.length === 0) {
                         console.error(`Símbolo inválido ou erro na API para a ação: ${acao}`);
-                        // Adiciona a ação à lista de ações que precisam ser verificadas
-                        continue; // Continua com a próxima ação sem interromper o loop
+                        continue;
                     }
-
-                    const symbol = data[0]?.symbol;
-                    
-                    // Armazenando a ação para ser gravada posteriormente
+            
                     acoesParaGravar.push(acao);
-
+            
+                    // Delay entre as requisições
+                    await delay(1000); // 1 segundo de intervalo
+            
                 } catch (error) {
                     console.error(`Erro ao processar ação ${acao}:`, error.message);
-                    // Em caso de erro, pode-se decidir continuar com a próxima ação
-                    continue;
                 }
             }
-
+*/
             const statusCadastro = await gravarCadastro(usernameInput, senhaHash, emailInput);
             if (statusCadastro) {
                 // Atualizar o arquivo com os novos dados
@@ -194,7 +195,7 @@ app.get('/api/cadastro', async (req, res) => {
                 });
 
                 // Segundo loop: Gravando as ações no banco, após todas as verificações
-                for (const acao of acoesParaGravar) {
+                for (const acao of acoesFavoritasInput) {
                     try {
                         const gravarAcoes = await gravarAcoesFavoritas(acao, usernameInput);
                         if (!gravarAcoes) {

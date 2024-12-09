@@ -69,32 +69,27 @@ function buscarID(username){
 
 
 async function gravarAcoesFavoritas(codigoPapel, username) {
-    
     try {
-      const idUsuario = await buscarID(username);
-      console.log(idUsuario);
-        return new Promise((res, rej) => {
-          con.query('INSERT INTO acoesFavoritas SET ?', { idUsuario, codigoPapel }, (err, rows) => {
-            if (err) {
-              return rej(err);
-            } else {
-              return res(true);
-            }
-          });
-      });
-  
-      await Promise.all(promises);
-  
-      // Check for any errors during individual inserts
-      if (promises.some((promise) => promise.catch)) {
-        throw new Error("Failed to insert some favorite actions.");
-      }
-  
-      return true;
+        const idUsuario = await buscarID(username);
+        console.log(`ID do usuário encontrado: ${idUsuario}`);
+        return new Promise((resolve, reject) => {
+            con.query(
+                'INSERT INTO acoesFavoritas SET ?',
+                { idUsuario, codigoPapel },
+                (err, rows) => {
+                    if (err) {
+                        return reject(err);
+                    }
+                    return resolve(true);
+                }
+            );
+        });
     } catch (error) {
-      throw error;
+        console.error('Erro ao gravar ações favoritas:', error.message);
+        throw error;
     }
 }
+
 
   function gravarPostagens(username, dataPostagem, titulo, conteudo) {
 

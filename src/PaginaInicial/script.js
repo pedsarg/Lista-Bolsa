@@ -83,7 +83,7 @@ function AtualizarAcoesFavoritas() {
           });
   } else {
       console.log('Username não encontrado. Usando ID padrão.');
-      obterAcoesFavoritasFrontend(9); // Chama com um ID padrão
+      obterAcoesFavoritasFrontend(1); // Chama com um ID padrão
   }
 }
 
@@ -125,6 +125,7 @@ function obterAcoesFavoritasFrontend(idUsuario) {
                   acoesFavoritasContainer.appendChild(acaoDiv);
               });
           } else {
+              obterAcoesFavoritasFrontend(1);
               console.log('Nenhuma ação favorita encontrada.');
           }
       })
@@ -216,7 +217,35 @@ function buscarPostagensFrontend() {
 }
 
 // Chama a função a cada 5 segundos para buscar as postagens mais recentes
-setInterval(buscarPostagensFrontend, 5000);  // 5000ms = 5 segundos
+setInterval(buscarPostagensFrontend, 30000);  // 5000ms = 5 segundos
 
 // Executa imediatamente ao carregar a página
 buscarPostagensFrontend();
+
+processarCodigosPapel();
+
+async function chamarProcessarCodigos() {
+  try {
+      const response = await fetch('http://localhost:3000/processar-codigos-papel', {
+          method: 'POST',
+          headers: {
+              'Content-Type': 'application/json',
+          },
+      });
+
+      if (!response.ok) {
+          const errorData = await response.json();
+          console.error('Erro ao chamar a API:', errorData.error);
+      } else {
+          const responseData = await response.json();
+          console.log(responseData.message);
+      }
+      await delay(5000);
+  } catch (error) {
+      console.error('Erro ao se conectar com o backend:', error.message);
+  }
+}
+
+function delay(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}

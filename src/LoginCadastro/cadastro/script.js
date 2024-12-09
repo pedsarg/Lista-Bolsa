@@ -106,7 +106,7 @@ async function validarCadastro() {
     try {
         
         const acoesFavoritasJSON = JSON.stringify(acoesFavoritas);
-        const response = await fetch(`http://localhost:3010/api/cadastro?username=${username}&password=${senha}&email=${email}&acoesFavoritas=${acoesFavoritasJSON}`);
+        const response = await fetch(`http://localhost:3010/api/cadastro?username=${username}&password=${password}&email=${email}&acoesFavoritas=${acoesFavoritasJSON}`);
         const data = await response.json();
 
         if (data.error) {
@@ -119,6 +119,7 @@ async function validarCadastro() {
         if (data.status) {
             aviso.style.display = 'block';
             window.location.href = '../../PaginaInicial/index.html';
+
         }
 
     } catch (error) {

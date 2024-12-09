@@ -1,3 +1,4 @@
+
 async function getStockData() {
   const symbol = document.getElementById('codigoAcao').value;
   const errorMessage = document.getElementById('error-message');
@@ -11,12 +12,11 @@ async function getStockData() {
   carregando.style.display = 'block';
   try {
     const [response, historicoResponse] = await Promise.all([
-      fetch(`http://localhost:3000/api/stock?symbol=${symbol}`),
-      fetch(`http://localhost:3000/api/historicoData?symbol=${symbol}`)
+      fetch(`http://localhost:3000/api/stock?symbol=${symbol}`)
   ]);
 
       const data = await response.json();
-      const historicoData = await historicoResponse.json();
+      
 
       if (!response.ok || !data || data.length === 0 || !data[0]) {
           throw new Error('Ação não encontrada. Verifique o nome do papel e tente novamente.');
@@ -41,16 +41,7 @@ async function getStockData() {
 
 
 
-            // Extrair os valores 'close' em um array
-    const closeValues = historicoData.map(item => item.close);
-    
-    // Extrair as horas, removendo os minutos (pegando só a parte antes dos ":")
-    const hours = historicoData.map(item => item.date.split(':')[0]);
-    
-    // Exibir os arrays no console
-    console.log('Close values:', closeValues);
-    console.log('Hours:', hours);
-
+      fetchLast7HoursData(symbol);
 
 
       if (data[0].changesPercentage > 0) {
@@ -70,3 +61,67 @@ async function getStockData() {
       carregando.style.display = 'none';
   }
 }
+
+async function fetchLast7HoursData(symbol) {
+    try {
+      // Corrigir a URL para incluir o protocolo e o domínio corretos
+      const response = await fetch(`http://localhost:3000/api/historicoData?symbol=${symbol}`);
+      
+      // Verifique se a resposta foi bem-sucedida
+      if (!response.ok) {
+        throw new Error('Erro ao consumir a API');
+      }
+      
+      const data = await response.json();
+      
+      // Extrair os valores 'close' em um array
+      const closeValues = data.map(item => item.close);
+      
+      // Extrair as horas, removendo os minutos (pegando só a parte antes dos ":")
+      const hours = data.map(item => item.date.split(':')[0]);
+  
+      // Gerar o gráfico de linha
+      generateLineChart(hours, closeValues);
+    } catch (error) {
+      console.error('Erro ao consumir a API no frontend:', error);
+    }
+  }
+  
+  
+
+  function generateLineChart(hours, closeValues) {
+    const ctx = document.getElementById('lineChart').getContext('2d');
+    
+    new Chart(ctx, {
+      type: 'line', // Tipo de gráfico: linha
+      data: {
+        labels: hours, // Horas no eixo X
+        datasets: [{
+          label: 'Preço de Fechamento',
+          data: closeValues, // Valores de fechamento no eixo Y
+          borderColor: 'rgba(75, 192, 192, 1)', // Cor da linha
+          backgroundColor: 'rgba(75, 192, 192, 0.2)', // Cor de fundo da linha (opcional)
+          fill: true, // Preencher abaixo da linha
+          tension: 0.1, // Suavizar a linha
+        }]
+      },
+      options: {
+        responsive: true,
+        scales: {
+          x: {
+            title: {
+              display: true,
+              text: 'Horas'
+            }
+          },
+          y: {
+            title: {
+              display: true,
+              text: 'Preço de Fechamento'
+            },
+            beginAtZero: false
+          }
+        }
+      }
+    });
+  }
